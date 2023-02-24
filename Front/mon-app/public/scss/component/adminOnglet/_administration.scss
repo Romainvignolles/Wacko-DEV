@@ -1,0 +1,191 @@
+.adminWacko {
+    width: 100%;
+    margin: auto;
+    height: 75%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border-top: 35px solid rgba(0, 0, 0, 0.6);
+
+    &__bottom {
+        display: flex;
+        height: 80%;
+        width: 100%;
+
+        &__left {
+            width: 30%;
+            height: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+
+            &__search {
+                height: 25px;
+                width: 50%;
+                border: none;
+                border-bottom: 2px solid $secondary;
+                background-color: transparent;
+                color: $secondary;
+                font-family: 'Rajdhani', sans-serif;
+                font-size: 20px;
+
+                &:focus {
+                    outline: none;
+                }
+
+                &::placeholder {
+                    font-family: 'Rajdhani', sans-serif;
+                    color: $secondary;
+                    font-size: 20px;
+                    text-align: center;
+                }
+            }
+
+            &__list {
+                width: 60%;
+                height: 60%;
+                padding: 15px;
+                display: flex;
+                flex-direction: column;
+                overflow: auto;
+                color: $fontcolor;
+                text-align: center;
+
+                span {
+                    cursor: pointer;
+                }
+
+                &::-webkit-scrollbar {
+                    width: 5px;
+                    background-color: #474747;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background-color: #a5a5a5;
+                }
+            }
+        }
+
+        &__middle {
+            width: 40%;
+            height: 90%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            display: none;
+
+            &__wacko {
+                width: 100%;
+                height: 80%;
+                padding: 15px;
+                flex-direction: column;
+                align-items: center;
+                color: $fontcolor;
+                justify-content: space-evenly;
+                display: flex;
+
+                h1 {
+                    display: flex;
+                    width: 100%;
+                    justify-content: center;
+                    margin: 0px;
+                }
+
+                &__bottom {
+
+                    display: flex;
+                    width: 100%;
+                    justify-content: space-around;
+
+                    &__checkbox {
+                        color: $fontcolor;
+                    }
+                }
+
+                &__button {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-around;
+                    align-items: center;
+
+                    button {
+                        width: 180px;
+                        height: 40px;
+                        color: $primary;
+                        background-color: #e4c3a5;
+                        font-size: 20px;
+                        border-radius: 10px;
+                        font-family: 'Rajdhani', sans-serif;
+
+                        &:hover {
+                            scale: 1.1;
+                            transition: 0.1s ease-in-out;
+                        }
+
+                        &:active {
+                            scale: 1;
+                            transition: 0.1s ease-in-out;
+
+                        }
+                    }
+
+                    .button1{
+                        background-color: #d61a02;
+                    }
+                }
+
+
+                p {
+                    height: 20px;
+                    margin: 0px;
+                }
+
+
+            }
+        }
+
+        &__right {
+            display: flex;
+            flex-direction: column;
+            width: 30%;
+            height: 90%;
+            color: $fontcolor;
+            align-items: center;
+            justify-content: space-evenly;
+
+            &__list {
+                width: 60%;
+                height: 60%;
+                padding: 15px;
+                display: flex;
+                flex-direction: column;
+                overflow: auto;
+                color: $fontcolor;
+                text-align: center;
+
+                &::-webkit-scrollbar {
+                    width: 5px;
+                    background-color: #474747;
+                }
+
+                &::-webkit-scrollbar-thumb {
+                    background-color: #a5a5a5;
+                }
+
+            }
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+}

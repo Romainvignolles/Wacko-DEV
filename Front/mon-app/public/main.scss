@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap');
+
+//import variables
+@import "./scss/utils/variables";
+
+//import base
+@import "./scss/base/app";
+@import "./scss/base/body";
+
+//import pages
+@import "./scss/page/hangarPage";
+@import "./scss/page/membrePage";
+@import "./scss/page/profilPage";
+@import "./scss/page/lienUtilePage";
+@import "./scss/page/adminPage";
+@import "./scss/page/adminWebsitePage";
+@import "./scss/page/errorPage";
+@import "./scss/page/login";
+@import "./scss/page/responsive";
+
+//import Navbar
+@import "./scss/component/navbar/navbar";
+@import "./scss/component/navbar/adminNavbar";
+
+// import adminOnglet
+@import "./scss/component/adminOnglet/administration";
+@import "./scss/component/adminOnglet/adminWebsite";
+
+//import onglet
+@import "./scss/component/onglet/membre";
+@import "./scss/component/onglet/profil";
+@import "./scss/component/onglet/section";
+@import "./scss/component/onglet/hangar";
+@import "./scss/component/onglet/lienUtile";
+@import "./scss/component/onglet/loading";
+
+//swiper
+@import "./scss/component/swiper/swiper";

@@ -1,0 +1,87 @@
+.loginPage {
+    width: 100%;
+    height: 100vh;
+
+    #errorMessage {
+        color:white;
+    }
+
+    .login {
+        background-image: url("/images/fond-ecran-noir.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+
+        &__connection{
+                    background-color: #7289da;
+                    color: #fff;
+                    border-radius: 3px;
+                    border: none;
+                    padding: 10px 15px;
+                    font-size: 14px;
+                    cursor: pointer;
+                    width: 10%;
+                    margin-top: 20px;
+                    right: 5%;
+                    position: absolute;
+                
+                &:hover {
+                    background-color: #5f73c2;
+                }
+            }
+
+        &__mid {
+            height: 90%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            &__text {
+                width: 60%;
+                margin-bottom: -190px;
+                margin-top: -200px;
+            }
+
+            &__logo {
+                width: 23%;
+            }
+
+            &__social{
+                display: flex;
+                align-items: center;
+
+                h1{
+                    margin-left: 20px;
+                    color:$secondary;
+                }
+
+                &__discord{
+                    background-color: #7289da;
+                    color: #fff;
+                    border-radius: 3px;
+                    border: none;
+                    padding: 10px 15px;
+                    font-size: 14px;
+                    cursor: pointer;
+                    display: flex;
+                    border-radius: 50%;
+                
+                &:hover {
+                    background-color: #5f73c2;
+                }
+
+                }
+            }
+        }
+
+    }
+
+
+
+}

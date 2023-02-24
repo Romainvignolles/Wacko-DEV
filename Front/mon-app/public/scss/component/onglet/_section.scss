@@ -1,0 +1,42 @@
+.section {
+color: black;
+  
+form{
+    background-image:url('/images/adra.jpg');
+	background-repeat:no-repeat;
+    background-size : cover;
+}
+table
+{
+	border-radius: 10px;
+    margin-left:auto;
+	margin-right:auto;
+	background-color: rgba(255, 255, 255, 0.606);
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    align-items: center;
+
+}
+
+.submit{
+    width: 50%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+}
+span{
+    width: 100%;
+}
+tr{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+   
+
+    td{
+        width: 30%;
+    }
+}
+
+}

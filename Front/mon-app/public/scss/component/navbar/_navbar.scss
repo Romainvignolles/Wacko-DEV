@@ -1,0 +1,89 @@
+.navbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+
+    height: 20%;
+
+    &__top {
+        background-image: url("/images/fond-ecran-noir.jpg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 100%;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        justify-content: center;
+
+        &__top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 95%;
+
+            a {
+                display: flex;
+                text-decoration: none;
+                align-items: center;
+
+                svg{
+                    color: $secondary;
+                }
+
+                img {
+                    height: 70px;
+                }
+            }
+
+            &__logo {
+                display: flex;
+                align-items: center;
+
+                &__ecusson {
+                    height: 100px;
+                }
+
+                &__texte {
+                    height: 400px;
+                    margin-top: -150px;
+                    margin-bottom: -150px;
+                }
+            }
+        }
+    }
+
+    &__menu {
+        background-color: $primaryOpacity;
+        display: flex;
+        align-content: center;
+        justify-content: space-around;
+        align-items: center;
+        width: 100%;
+        height: 50px;
+    }
+
+    &__button {
+        color: $fontcolor;
+        background-color: transparent;
+        cursor: pointer;
+        padding: 10px;
+        border: none;
+        font-size: 20px;
+        font-family: 'Rajdhani', sans-serif;
+
+        &:hover {
+            scale: 1.1;
+            transition: 0.1s ease-in-out;
+        }
+
+        &:active {
+            scale: 1;
+            transition: 0.1s ease-in-out;
+
+        }
+
+    }
+}
