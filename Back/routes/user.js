@@ -14,16 +14,10 @@ router.get('/user/:id',auth, userCtrl.getOneUser);
 //modification des droits admin 
 router.put('/admin/:id',auth,userCtrl.modifyMemberRight);
 
-
-
-
-//obsolète
-
 //supprimer un membre de la BDD
 router.delete('/deleteUser/:id',userCtrl.deleteUser)
 
 //ajouter un membre a la BDD
 router.post('/addUser', userCtrl.addUser);
-
 
 module.exports = router;

@@ -22,7 +22,8 @@ const Profil = () => {
         }
     );
 
-    let discriminator = parseInt(localStorage.getItem('discriminator')); //récupération du discriminator depuis le local storage 
+    let discriminator = localStorage.getItem('discriminator'); //récupération du discriminator depuis le local storage 
+
 
     const [load, setLoad] = useState();                               //permet un refresh dynamique de la page
     const [memberOnline, setMemberOnline] = useState([]);
@@ -38,10 +39,11 @@ const Profil = () => {
     };
 
     //recupération du membre connecté
-    const fetchUser = async () => {
-        await axios(`${process.env.REACT_APP_API_URL}api/auth/user/${discriminator}`)
+    const fetchUser = () => {
+        axios(`${process.env.REACT_APP_API_URL}api/auth/user/${discriminator}`)
             .then((res) => {
-                setHangarArray(res.data.vaisseaus)
+
+                setHangarArray(res.data.vaisseaus) 
                 setMemberOnline(res.data)
 
                 let date = res.data.date
@@ -134,7 +136,6 @@ const Profil = () => {
 
 
     }
-    
     return (
 
         <div className='profil'>
@@ -152,8 +153,7 @@ const Profil = () => {
                     <button onClick={addHangarEntrie}>Ajouter</button>
                 </div>
 
-
-                <div className='profil__left__list'>
+                 <div className='profil__left__list'>
                     {hangarArray.map(ship => (
                         <div className='profil__left__list__card' key={ship.id} id={ship.id}>
                             <img src={ship.image} alt="" />
@@ -165,6 +165,8 @@ const Profil = () => {
                         </div>
                     ))}
                 </div>
+                
+               
 
                 <p id="actionDisplay" > </p>
 

@@ -63,7 +63,8 @@ const Membre = () => {
     let membreFilter = staticStat.filter(e => e.role === 'Membre');
     let recrueFilter = staticStat.filter(e => e.role === 'Recrue');
     let gigmFilter = staticStat.filter(e => e.role === 'GIGM');
-    let adminFilter = staticStat.filter(e => e.role === 'administrateur');
+    let adminFilter = staticStat.filter(e => e.role === 'Administrateur');
+    let diplomateFilter = staticStat.filter(e => e.role === 'Diplomate');
 
     let presidentCount = presidentFilter.length;
     let conseilCount = conseilFilter.length;
@@ -71,6 +72,7 @@ const Membre = () => {
     let recrueCount = recrueFilter.length;
     let gigmCount = gigmFilter.length;
     let adminCount = adminFilter.length;
+    let diplomateCount = diplomateFilter.length;
 
 
 
@@ -175,13 +177,22 @@ const Membre = () => {
                     document.getElementById("listTitle").innerHTML = "GIGM :";
                 });
                 break;
-            case "Administrateur":
+            case "administrateur":
                 resetsearch()
                 axios.get(`${process.env.REACT_APP_API_URL}api/auth/user`).then(res => {
                     let member = res.data;
                     const adminFilter = member.filter(element => element.role === "Administrateur");
                     setAllMember(adminFilter)
                     document.getElementById("listTitle").innerHTML = "Administrateur :";
+                });
+                break;
+            case "diplomate":
+                resetsearch()
+                axios.get(`${process.env.REACT_APP_API_URL}api/auth/user`).then(res => {
+                    let member = res.data;
+                    const diplomateFilter = member.filter(element => element.role === "Diplomate");
+                    setAllMember(diplomateFilter)
+                    document.getElementById("listTitle").innerHTML = "Diplomates :";
                 });
                 break;
             default:
@@ -203,12 +214,16 @@ const Membre = () => {
                     Président[{presidentCount}]
                 </span>
 
-                <span onClick={memberFilter} id='Administrateur' className='membre__top__count'>
+                <span onClick={memberFilter} id='administrateur' className='membre__top__count'>
                     Administrateurs[{adminCount}]
                 </span>
 
                 <span onClick={memberFilter} id='conseil' className='membre__top__count'>
                     Conseillers[{conseilCount}]
+                </span>
+
+                <span onClick={memberFilter} id='diplomate' className='membre__top__count'>
+                    Diplomates[{diplomateCount}]
                 </span>
                 
                 <span onClick={memberFilter} id='GIGM' className='membre__top__count'>
@@ -243,8 +258,8 @@ const Membre = () => {
                     <div id='homepage' className='membre__bottom__right__homepage'>
                         <div className='membre__bottom__right__homepage__text'>
                             <h1>{staticStat.length} membres sont inscrits sur le site! </h1>
-                            <p>Accédez au profil de chaque membre ainsi qu'a leur hangar personnel.</p>
-                            <p>Pensez a mettre régulièrement a jour votre hangar via votre profil!</p>
+                            <p>Accédez au profil de chaque membre ainsi qu'à leur hangar personnel.</p>
+                            <p>Pensez à mettre régulièrement à jour votre hangar via votre profil!</p>
                         </div>
 
                     </div>

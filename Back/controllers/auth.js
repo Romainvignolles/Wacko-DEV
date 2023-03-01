@@ -7,7 +7,7 @@ exports.discord = (req, res, next) => {
 
     // Traitement des Roles discord
     const invitéStatut = "985975287395254363"
-    const wackoRoleArray = [{ "name": "Invités", "id": "985975287395254363", "priority": "0" }, { "name": "Recrue", "id": "985975667114016798", "priority": "1" }, { "name": "Membre", "id": "985974627929038948", "priority": "2" }, { "name": "GIGM", "id": "988577152393949254", "priority": "3" }]
+    const wackoRoleArray = [{ "name": "Invités", "id": "985975287395254363", "priority": "0" }, { "name": "Recrue", "id": "985975667114016798", "priority": "1" }, { "name": "Membre", "id": "985974627929038948", "priority": "2" }, { "name": "GIGM", "id": "988577152393949254", "priority": "3" },{ "name": "Diplomate", "id": "985975604824408104", "priority": "4" },{ "name": "Conseiller", "id": "985975740115869716", "priority": "5" },{ "name": "Administrateur", "id": "988950825516818452", "priority": "6" },{ "name": "Président", "id": "985972948450037810", "priority": "7" }]
     const discordRole = req.body.role
 
     var compareArray = wackoRoleArray.filter(function (obj) {
