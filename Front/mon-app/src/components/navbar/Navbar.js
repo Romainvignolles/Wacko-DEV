@@ -5,21 +5,13 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
 
     const logOut = (e) => {
-
         localStorage.clear()
     }
-
 
     return (
         <>
             <div className='navbar'>
-
-
-
                 <div className='navbar__top'>
-
-
-
                     <div className='navbar__top__top'>
 
                         <Link to="/">
@@ -37,16 +29,14 @@ const Navbar = () => {
                             <button className='navbar__button' id='profil'>Profil</button>
                             <img className="navbar__top__logo__profil" src="images/profil_v1.png" alt="logo Wacko" />
                         </Link>
-
                     </div>
-
-
                 </div>
 
                 <div className='navbar__menu'>
                     <Link to="/Membre"><button className='navbar__button' id='membres'>MEMBRES</button></Link>
                     <Link to="/Hangar"><button className='navbar__button' id='hangar'>HANGAR</button></Link>
                     <Link to="/LiensUtiles"><button className='navbar__button' id='presentation'>LIENS UTILES</button></Link>
+                    <Link to="/Event"><button className='navbar__button' id='presentation'>EVENEMENTS</button></Link>
                 </div>
 
             </div>

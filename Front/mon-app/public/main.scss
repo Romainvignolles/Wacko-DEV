@@ -1,3 +1,8 @@
+@font-face {
+	font-family: "goodTime";
+	src:url('./font/good\ times\ rg.otf')
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap');
 
 //import variables
@@ -17,6 +22,7 @@
 @import "./scss/page/errorPage";
 @import "./scss/page/login";
 @import "./scss/page/responsive";
+@import "./scss/page/createEventPage";
 
 //import Navbar
 @import "./scss/component/navbar/navbar";

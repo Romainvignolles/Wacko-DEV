@@ -8,6 +8,7 @@ const starshipsRoutes = require('./routes/starships');
 const linkRoutes = require('./routes/link');
 const hangarRoutes = require('./routes/hangar');
 const authRoutes = require('./routes/auth');
+const eventRoutes = require('./routes/event');
 
 const path = require('path');
 
@@ -34,6 +35,7 @@ app.use('/api/', starshipsRoutes);
 app.use('/api/', hangarRoutes);
 app.use('/api/', linkRoutes);
 app.use('/api/', authRoutes);
+app.use('/api/', eventRoutes);
 
 
 db.sequelize.sync();

@@ -50,6 +50,11 @@ const LoginForm = (props) => {
                         })
                             .then((res) => {
                                 let pseudo = res.data.nick;
+                                
+                                if (pseudo === null) {
+                                pseudo = res.data.user.username
+                                }
+
                                 let role = res.data.roles
                                 let discriminator = res.data.user.discriminator
                                 let date = res.data.joined_at
@@ -58,6 +63,13 @@ const LoginForm = (props) => {
                                 let discordId = res.data.user.id
 
                                 let avatarUrl = `https://cdn.discordapp.com/avatars/${discordId}/${avatarCode}.png`
+
+                                console.log(res.data);
+                                console.log(pseudo);
+                                console.log(role);
+                                console.log(discriminator);
+                                console.log(date);
+                                console.log(avatarUrl);
 
                                 axios({                 // envoi de ses information en Backend pour traitement
                                     method: "post",
@@ -199,8 +211,8 @@ const LoginForm = (props) => {
     }, [useEffectLoad]);
 
     const discord = (e) => {
-        // window.location.href = "https://discord.com/api/oauth2/authorize?client_id=1066757727419908126&redirect_uri=http%3A%2F%2Flocalhost%3A3001&response_type=token&scope=guilds%20guilds.members.read"
-        window.location.href = "https://discord.com/api/oauth2/authorize?client_id=1013836060092018770&redirect_uri=https%3A%2F%2Fwacko.romain-vignolles.fr&response_type=token&scope=guilds%20guilds.members.read"
+        window.location.href = "https://discord.com/api/oauth2/authorize?client_id=1066757727419908126&redirect_uri=http%3A%2F%2Flocalhost%3A3001&response_type=token&scope=guilds%20guilds.members.read"
+        // window.location.href = "https://discord.com/api/oauth2/authorize?client_id=1013836060092018770&redirect_uri=https%3A%2F%2Fwacko.romain-vignolles.fr&response_type=token&scope=guilds%20guilds.members.read"
     }
 
     const social = (e) => {

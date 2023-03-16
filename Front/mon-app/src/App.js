@@ -2,6 +2,7 @@ import * as React from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
 
 
+
 import Login from "./pages/Login";
 import LiensUtiles from "./pages/LiensUtiles";
 import Administration from "./pages/Administration";
@@ -10,6 +11,9 @@ import MembrePage from "./pages/MembrePage";
 import HangarPage from "./pages/HangarPage";
 import AdminWebsitePage from "./pages/AdminWebsite";
 import ErrorPage from "./pages/ErrorPage";
+import EventPage from "./pages/event/Event";
+import CreateEventPage from "./pages/event/CreateEvent";
+import DisplayEventPage from "./pages/event/DisplayEvent";
 
 import PrivateRoutes from "./utils/PrivateRoutes";
 
@@ -26,6 +30,9 @@ function App() {
           <Route path="/Hangar" element={<HangarPage />} />
           <Route path="/Administration" element={<Administration />} />
           <Route path="/AdminWebsite" element={<AdminWebsitePage />} />
+          <Route path="/event" element={<EventPage />} />
+          <Route path="/createEvent" element={<CreateEventPage />} />
+          <Route path="/displayEvent" element={<DisplayEventPage />} />
         </Route>
 
         <Route path="/" element={<Login />} />

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
@@ -97,7 +98,7 @@ const WebsiteAdmin = () => {
 
     }
 
-    //supprimer un lien
+    //supprimer un vaisseau
     const deleteShip = (e) => {
 
         axios({
@@ -197,6 +198,8 @@ const WebsiteAdmin = () => {
     return (
 
         <div className='adminWebsite'>
+
+            <Link to="/CreateEvent"><button className='navbar__button' id='presentation'>Crée un event</button></Link>
 
             <div className='adminWebsite__card'>
                 <h1>Liens Utiles</h1>

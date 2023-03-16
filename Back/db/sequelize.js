@@ -19,6 +19,7 @@ db.user = require("../models/user")(sequelize, Sequelize);
 db.starships = require("../models/starships")(sequelize, Sequelize);
 db.link = require("../models/link")(sequelize, Sequelize);
 db.hangar = require("../models/hangar")(sequelize, Sequelize);
+db.event = require("../models/event")(sequelize, Sequelize);
 
 
 db.user.belongsToMany(db.starships, { through: db.hangar });

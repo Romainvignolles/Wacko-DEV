@@ -8,12 +8,6 @@ import { faAddressBook, faDoorOpen, faScrewdriverWrench, } from "@fortawesome/fr
 
 const AdminNavbar = () => {
 
-
-    //retour homepage
-    const back = (e) => {
-        window.location = "/Membre";
-    }
-
     return (
         <>
             <div className='adminNavbar'>
