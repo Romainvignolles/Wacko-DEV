@@ -277,7 +277,7 @@ const Membre = () => {
                                 }}
                                 navigation={true}
                                 modules={[Pagination, Navigation]}
-                                className="mySwiper"
+                                className="memberSwiper"
                             >
                                 {hangarArray.map(vaisseaux => (
                                     <SwiperSlide className='membre__bottom__right__oneMember__bottom__swipper' key={vaisseaux.id} id={vaisseaux.id} >

@@ -20,6 +20,7 @@ exports.addEvent = (req, res, next) => {
             groupeur: req.body.groupeur,
             stuff: req.body.stuff,
             eventType: req.body.eventType,
+            image: req.body.image,
         });
         event.save()
             .then(() => res.status(201).json({ message: 'nouvel event ajouter!' }))
@@ -27,4 +28,18 @@ exports.addEvent = (req, res, next) => {
     } else {
         res.status(500).json({ message: 'Champs invalide' })
     }
+};
+
+// recupérer tout les event
+exports.getAllEvent = (req, res, next) => {
+    Event.findAll({ include: { all: true, nested: true }, order: [['createdAt', 'DESC']]})
+        .then((things) => res.status(200).send(things))
+        .catch((error) => res.status(400).send({ error: error }))
+};
+
+//recupère un seul event
+exports.getOneEvent = (req, res, next) => {
+    Event.findOne({ include: { all: true, nested: true }, where: { id: req.params.id } })
+        .then((starships) => res.status(200).send(starships))
+        .catch((error) => res.status(400).send({ error: error }))
 };

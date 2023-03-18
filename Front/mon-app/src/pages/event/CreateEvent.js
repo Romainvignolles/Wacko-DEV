@@ -1,9 +1,16 @@
-import { Link } from 'react-router-dom';
-import React, { useState } from 'react';
 import axios from 'axios';
-
+import React, { useRef, useState } from "react";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/pagination";
+import { EffectCoverflow, Pagination } from "swiper";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -51,7 +58,8 @@ const CreateEventPage = (props) => {
         const sectionVol = document.getElementById('vol').checked;
         const sectionCombat = document.getElementById('combat').checked;
         const sectionLogi = document.getElementById('logistique').checked;
-        const eventType = sectionVol ? 'Vol' : sectionLogi ? 'Logistique' : sectionCombat ? 'Combat' : '';
+        const sectionAll = document.getElementById('toute').checked;
+        const eventType = sectionVol ? 'Vol' : sectionLogi ? 'Logistique' : sectionCombat ? 'Combat' : sectionAll ? 'Toute' : '';
 
         const gameplayFPS = document.getElementById('FPS').checked;
         const gameplayPilotage = document.getElementById('pilotage').checked;
@@ -60,44 +68,72 @@ const CreateEventPage = (props) => {
 
         const noForbidenShip = document.getElementById('noForbidenShip').checked;
         const yesForbidenShip = document.getElementById('yesForbidenShip').value;
-        const forbidenShip = noForbidenShip ? 'Aucun' : yesForbidenShip;
+        const forbidenShip = noForbidenShip ? 'Aucune' : yesForbidenShip;
 
         const noForbidenWeapon = document.getElementById('noForbidenWeapon').checked;
         const yesForbidenWeapon = document.getElementById('yesForbidenWeapon').value;
-        const forbidenWeapon = noForbidenWeapon ? 'Aucun' : yesForbidenWeapon;
+        const forbidenWeapon = noForbidenWeapon ? 'Aucune' : yesForbidenWeapon;
 
         const noStuff = document.getElementById('noStuff').checked;
         const yesStuff = document.getElementById('yesStuff').value;
         const stuff = noStuff ? 'Aucun' : yesStuff;
 
+        let image = document.getElementsByClassName("swiper-slide swiper-slide-visible swiper-slide-active")[0].firstChild
+        image = image.src
 
-        axios({                 // envoi des informations pour la création de l'event
-            method: "post",
-            url: `${process.env.REACT_APP_API_URL}api/addEvent`,
-            data: {
-                titre,
-                date,
-                lieu,
-                environnement,
-                description: formData,
-                joueur,
-                serveur: selectedServer,
-                niveau: minLVL,
-                crimeStat,
-                forbidenShip,
-                forbidenWeapon,
-                groupeur,
-                stuff,
-                eventType,
-            }
-        })
-            .then((res) => {
-                console.log(res);
 
+        if (titre === "" || date === "" || lieu === "" || environnement === "" || formData === "" || joueur === "" || selectedServer === "" || minLVL === "" || crimeStat === "" || forbidenShip === "" || forbidenWeapon === "" || groupeur === "" || stuff === "" || eventType === "") {
+            let display = document.getElementById("eventErrorMessage")
+            display.innerText = "Champs invalide ou incomplet"
+            setTimeout(() => {
+                display.innerHTML = ""
+            }, "3000")
+
+        } else {
+            axios({                 // envoi des informations pour la création de l'event
+                method: "post",
+                url: `${process.env.REACT_APP_API_URL}api/addEvent`,
+                data: {
+                    titre,
+                    date,
+                    lieu,
+                    environnement,
+                    description: formData,
+                    joueur,
+                    serveur: selectedServer,
+                    niveau: minLVL,
+                    crimeStat,
+                    forbidenShip,
+                    forbidenWeapon,
+                    groupeur,
+                    stuff,
+                    eventType,
+                    image,
+                }
             })
-            .catch((err) => {
-                console.log(err);
-            })
+                .then((res) => {
+                    toast.success('Évènement crée!', {
+                        position: "bottom-right",
+                        autoClose: 3000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                    });
+
+                    setTimeout(() => {
+                        window.location = "/AdminWebsite";
+                    }, "3000")
+
+
+                })
+                .catch((err) => {
+                })
+
+        }
+
     }
 
     return (
@@ -107,18 +143,17 @@ const CreateEventPage = (props) => {
             <div className='eventRight'>
                 <div className='eventRight__top'>
                     <input id='titre' type="text" name="titre" placeholder="Titre" />
-                    <input id='date' type="text" name="date" placeholder="date" />
-                    <input id='lieu' type="text" name="lieu" placeholder="lieu" />
+                    <input id='date' type="text" name="date" placeholder="Date" />
+                    <input id='lieu' type="text" name="lieu" placeholder="Lieu" />
                     <input id='joueur' type="text" name="joueur" placeholder="Nbr joueurs" />
                     <input id='groupeur' type="text" name="groupeur" placeholder="Groupeur" />
                 </div>
 
                 <div className='eventRight__middle'>
                     <form>
-                        <label htmlFor="message">Message :</label>
                         <CKEditor
                             editor={ClassicEditor}
-                            data="<p>Hello from CKEditor 5!</p>"
+                            data="<p>Description de l'event:</p>"
                             onReady={editor => {
                                 // You can store the "editor" and use when it is needed.
                                 console.log('Editor is ready to use!', editor);
@@ -135,18 +170,61 @@ const CreateEventPage = (props) => {
                                 // console.log('Focus.', editor);
                             }}
                         />
-                    </form>
 
+                    </form>
+                    <div className='swiperElement'>
+                        <h3>Background de l'event</h3>
+                        <Swiper
+                            effect={"coverflow"}
+                            grabCursor={true}
+                            centeredSlides={true}
+                            slidesPerView={"auto"}
+                            coverflowEffect={{
+                                rotate: 50,
+                                stretch: 0,
+                                depth: 100,
+                                modifier: 1,
+                                slideShadows: true,
+                            }}
+                            pagination={true}
+                            modules={[EffectCoverflow, Pagination]}
+                            className="mySwiper"
+                        >
+                            <SwiperSlide>
+                                <img src="./images/event/event1.png" alt="" />
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img src="./images/event/event2.png" alt="" />
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img src="./images/event/event3.png" alt="" />
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img src="./images/event/event4.png" alt="" />
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img src="./images/event/event5.png" alt="" />
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img src="./images/event/event6.png" alt="" />
+                            </SwiperSlide>
+                            <SwiperSlide>
+                                <img src="./images/event/event7.png" alt="" />
+                            </SwiperSlide>
+
+                        </Swiper>
+                    </div>
 
                 </div>
 
                 <div className='eventRight__bot'>
 
-                    <button id='back' onClick={back}>
-                        Retour
-                    </button>
+                    <button id='back' onClick={back}>Retour</button>
 
-                    <button id='send' onClick={saveEvent}>Enregistrer </button>
+                    <p id='eventErrorMessage'></p>
+
+                    <button id='send' onClick={saveEvent}>Enregistrer</button>
+                    <ToastContainer />
 
                 </div>
             </div>
@@ -203,6 +281,10 @@ const CreateEventPage = (props) => {
                     <div>
                         <input type="radio" id="vol" name="Section" />
                         <label htmlFor="vol">Vol</label>
+                    </div>
+                    <div>
+                        <input type="radio" id="toute" name="Section" />
+                        <label htmlFor="toute">Toute</label>
                     </div>
                 </fieldset>
                 <fieldset>

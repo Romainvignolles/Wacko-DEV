@@ -386,12 +386,65 @@ body {
   font-size: 17px;
   font-family: "Rajdhani", sans-serif;
 }
+.createEventPage .eventRight__middle {
+  height: 80%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-around;
+}
+.createEventPage .eventRight__middle form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  width: 60%;
+}
+.createEventPage .eventRight__middle .swiperElement {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.createEventPage .eventRight__middle .swiperElement img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.createEventPage .eventRight__middle .swiperElement h3 {
+  margin: 5px;
+  color: #E8B372;
+}
+.createEventPage .eventRight__middle .swiperElement .swiper-3d,
+.createEventPage .eventRight__middle .swiperElement .swiper-3d.swiper-css-mode .swiper-wrapper {
+  width: 100%;
+  border: 1px solid #E8B372;
+}
+.createEventPage .eventRight__middle .swiperElement .swiper-pagination-bullet {
+  background: white;
+  opacity: 1 !important;
+}
+.createEventPage .eventRight__middle .swiperElement .swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  background: #E8B372 !important;
+}
 .createEventPage .eventRight__bot {
   width: 100%;
   height: 10%;
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+.createEventPage .eventRight__bot p {
+  width: 20%;
+  color: #E8B372;
+  text-align: center;
 }
 .createEventPage .eventLeft {
   width: 20%;
@@ -456,6 +509,173 @@ body {
   align-items: center;
   justify-content: center;
   font-size: 17px;
+}
+
+.ck.ck-editor__main > .ck-editor__editable {
+  background: rgba(40, 54, 56, 0.6) !important;
+  border-radius: 0;
+  font-family: "Rajdhani", sans-serif;
+  color: white;
+  max-height: 500px;
+  min-height: 500px;
+}
+
+.ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+  border-color: #E8B372 !important;
+  min-height: 500px;
+  max-width: 100%;
+}
+
+.ck-reset_all :not(.ck-reset_all-excluded *),
+.ck.ck-reset,
+.ck.ck-reset_all {
+  background: rgba(40, 54, 56, 0.6) !important;
+}
+
+.ck-reset_all :not(.ck-reset_all-excluded *),
+.ck.ck-reset_all {
+  color: #E8B372 !important;
+}
+
+.ck-rounded-corners .ck.ck-editor__top .ck-sticky-panel .ck-toolbar,
+.ck.ck-editor__top .ck-sticky-panel .ck-toolbar.ck-rounded-corners {
+  border: 1px solid #E8B372 !important;
+  border-bottom: none !important;
+}
+
+.ck.ck-editor {
+  max-width: 70%;
+  min-width: 70%;
+}
+
+.eventPageBackground {
+  width: 100%;
+  height: 100vh;
+  background-image: url("/images/event.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.eventPageBackground .eventPage {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.eventPageBackground .eventPage .eventSwiper {
+  width: 90%;
+  height: 80%;
+}
+.eventPageBackground .eventPage .swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 40%;
+  height: 80%;
+  border: 2px solid #E4D8CD;
+  border-radius: 20px;
+}
+.eventPageBackground .eventPage .swiper-slide img {
+  display: block;
+  width: 100%;
+  border-radius: 20px;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.eventPageBackground .eventPage .swiper-pagination-bullet {
+  background: black;
+  opacity: 1 !important;
+}
+.eventPageBackground .eventPage .swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  background: white !important;
+}
+.eventPageBackground .eventPage .eventSwipperCard__info {
+  color: #E4D8CD;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+  font-size: 18px;
+}
+.eventPageBackground .eventPage .eventSwipperCard__info h1 {
+  width: 100%;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  font-family: "goodTime", sans-serif;
+}
+.eventPageBackground .eventPage .eventSwipperCard__info button {
+  width: 40%;
+  height: 7%;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-family: "Rajdhani", sans-serif;
+  font-size: 17px;
+  border-radius: 10px;
+}
+.eventPageBackground .eventPage .eventSwipperCard__botInfo {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  height: 5%;
+}
+
+.displayEvent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  height: 100%;
+  width: 100%;
+}
+.displayEvent__info {
+  position: absolute;
+  color: white;
+  width: 100%;
+  height: 100%;
+}
+.displayEvent__info h1 {
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+.displayEvent__info #eventDescription {
+  width: 30%;
+  background-color: rgba(26, 42, 51, 0.8);
+  max-height: 90%;
+  padding: 30px;
+  overflow: auto;
+}
+.displayEvent__info #eventDescription::-webkit-scrollbar {
+  width: 5px;
+  background-color: #474747;
+}
+.displayEvent__info #eventDescription::-webkit-scrollbar-thumb {
+  background-color: #a5a5a5;
+}
+.displayEvent__info #eventInfo {
+  background-color: rgba(26, 42, 51, 0.8);
+  width: 50%;
+}
+.displayEvent__info__middle {
+  height: 80%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.displayEvent img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .navbar {
@@ -1478,14 +1698,14 @@ body {
   width: 100%;
 }
 
-.swiper {
+.memberSwiper {
   width: 75%;
   height: 65%;
   margin: 0 !important;
   border-radius: 20px;
 }
 
-.swiper-slide {
+.membre__bottom__right__oneMember__bottom__swipper {
   text-align: center;
   font-size: 18px;
   background: #fff;
@@ -1495,7 +1715,7 @@ body {
   align-items: center;
 }
 
-.swiper-slide img {
+.membre__bottom__right__oneMember__bottom__swipper img {
   display: block;
   width: 100%;
   height: 100%;
