@@ -124,7 +124,7 @@ const CreateEventPage = (props) => {
                     });
 
                     setTimeout(() => {
-                        window.location = "/AdminWebsite";
+                        window.location = "/Event";
                     }, "3000")
 
 

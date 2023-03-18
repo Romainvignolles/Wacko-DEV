@@ -19,7 +19,7 @@
 
         #eventDescription {
             width: 30%;
-            background-color: rgb(26, 42, 51 ,0.8);
+            background-color: rgb(26, 42, 51, 0.8);
             max-height: 90%;
             padding: 30px;
             overflow: auto;
@@ -35,13 +35,13 @@
             }
         }
 
-        #eventInfo{
-            background-color: rgb(26, 42, 51 ,0.8);
+        #eventInfo {
+            background-color: rgb(26, 42, 51, 0.8);
             width: 50%;
 
         }
 
-        &__middle{
+        &__middle {
             height: 80%;
             display: flex;
             justify-content: flex-start;
@@ -57,5 +57,51 @@
         width: 100%;
         object-fit: cover;
 
+    }
+
+    .test {
+        position: relative;
+        /*les .picto-item deviennent référents*/
+        cursor: help;
+        border-radius: 50%;
+    }
+
+    .test:hover:after,
+    .test:focus:after {
+        content: attr(aria-label);
+        /* on affiche aria-label */
+        position: absolute;
+        top: -2.4em;
+        left: 50%;
+        transform: translateX(-50%);
+        /* on centre horizontalement  */
+        z-index: 1;
+        /* pour s'afficher au dessus des éléments en position relative */
+        white-space: nowrap;
+        /* on interdit le retour à la ligne*/
+        padding: 5px 14px;
+        background: #413219;
+        color: #fff;
+        border-radius: 4px;
+        font-size: 1.2rem;
+    }
+
+    /* on génère un second élément en :before pour la flèche */
+
+    [aria-label]:hover:before,
+    [aria-label]:focus:before {
+        content: "▼";
+        position: absolute;
+        top: -1em;
+        left: 50%;
+        transform: translateX(-50%);
+        /* on centre horizontalement  */
+        font-size: 20px;
+        color: #413219;
+    }
+
+    /* pas de contour durant le :focus */
+    [aria-label]:focus {
+        outline: none;
     }
 }

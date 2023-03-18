@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@700&display=swap");
 @font-face {
   font-family: "goodTime";
@@ -571,16 +572,14 @@ body {
   background-size: cover;
   width: 40%;
   height: 80%;
-  border: 2px solid #E4D8CD;
-  border-radius: 20px;
 }
 .eventPageBackground .eventPage .swiper-slide img {
   display: block;
   width: 100%;
-  border-radius: 20px;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  opacity: 0.95;
 }
 .eventPageBackground .eventPage .swiper-pagination-bullet {
   background: black;
@@ -591,7 +590,7 @@ body {
   background: white !important;
 }
 .eventPageBackground .eventPage .eventSwipperCard__info {
-  color: #E4D8CD;
+  color: #F9DBB6;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -600,21 +599,32 @@ body {
   justify-content: space-evenly;
   flex-direction: column;
   font-size: 18px;
+  z-index: 2;
+}
+.eventPageBackground .eventPage .eventSwipperCard__info svg {
+  width: 15%;
+  height: 15%;
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  fill: #F9DBB6;
 }
 .eventPageBackground .eventPage .eventSwipperCard__info h1 {
   width: 100%;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.3);
   font-family: "goodTime", sans-serif;
+  font-size: 25px;
 }
 .eventPageBackground .eventPage .eventSwipperCard__info button {
   width: 40%;
   height: 7%;
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
+  background: rgba(249, 219, 182, 0.9);
+  color: black;
   font-family: "Rajdhani", sans-serif;
   font-size: 17px;
   border-radius: 10px;
+  cursor: pointer;
 }
 .eventPageBackground .eventPage .eventSwipperCard__botInfo {
   display: flex;
@@ -622,7 +632,7 @@ body {
   align-items: center;
   justify-content: space-around;
   text-align: center;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.3);
   height: 5%;
 }
 
@@ -633,6 +643,8 @@ body {
   background-color: black;
   height: 100%;
   width: 100%;
+  /* on génère un second élément en :before pour la flèche */
+  /* pas de contour durant le :focus */
 }
 .displayEvent__info {
   position: absolute;
@@ -676,6 +688,45 @@ body {
   width: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+.displayEvent .test {
+  position: relative;
+  /*les .picto-item deviennent référents*/
+  cursor: help;
+  border-radius: 50%;
+}
+.displayEvent .test:hover:after,
+.displayEvent .test:focus:after {
+  content: attr(aria-label);
+  /* on affiche aria-label */
+  position: absolute;
+  top: -2.4em;
+  left: 50%;
+  transform: translateX(-50%);
+  /* on centre horizontalement  */
+  z-index: 1;
+  /* pour s'afficher au dessus des éléments en position relative */
+  white-space: nowrap;
+  /* on interdit le retour à la ligne*/
+  padding: 5px 14px;
+  background: #413219;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 1.2rem;
+}
+.displayEvent [aria-label]:hover:before,
+.displayEvent [aria-label]:focus:before {
+  content: "▼";
+  position: absolute;
+  top: -1em;
+  left: 50%;
+  transform: translateX(-50%);
+  /* on centre horizontalement  */
+  font-size: 20px;
+  color: #413219;
+}
+.displayEvent [aria-label]:focus {
+  outline: none;
 }
 
 .navbar {

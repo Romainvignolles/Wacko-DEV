@@ -1,94 +1,105 @@
-.eventPageBackground{
+.eventPageBackground {
     width: 100%;
     height: 100vh;
     background-image: url("/images/event.png");
     background-repeat: no-repeat;
     background-size: cover;
 
-   .eventPage {
-    width: 100%;
-    height: 80%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-   
-
-    .eventSwiper {
-        width: 90%;
-        height: 80%;
-       
-    }
-
-    .swiper-slide {
-        background-position: center;
-        background-size: cover;
-        width: 40%;
-        height: 80%;
-        border: 2px solid #E4D8CD;
-        border-radius: 20px;
-    }
-
-    .swiper-slide img {
-        display: block;
+    .eventPage {
         width: 100%;
-        border-radius: 20px;
-        height: 100%;
-        object-fit: cover;
+        height: 80%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-    }
 
-    .swiper-pagination-bullet {
-        background: black;
-        opacity: 1 !important;
-    }
 
-    .swiper-pagination-bullet-active {
-        opacity: 1 !important;
-        background: white !important;
-    }
+        .eventSwiper {
+            width: 90%;
+            height: 80%;
 
-    .eventSwipperCard {
+        }
 
-        &__info {
-            color:#E4D8CD;
-            position: absolute;
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 40%;
+            height: 80%;
+        }
+
+        .swiper-slide img {
+            display: block;
             width: 100%;
             height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-evenly;
-            flex-direction: column;
-            font-size: 18px;
+            object-fit: cover;
+            opacity: 0.95;
 
-            h1 {
-                width: 100%;
-                text-align: center;
-                background-color: rgba(0, 0, 0, 0.6);
-                font-family: 'goodTime', sans-serif;
-            }
-
-            button{
-                width: 40%;
-                height: 7%;
-                background: rgba(0, 0, 0, 0.6);
-                color: white;
-                font-family: 'Rajdhani', sans-serif;
-                font-size: 17px;
-                border-radius: 10px;
-
-
-            }
         }
 
-        &__botInfo {
-            display: flex;
-            width: 100%;
-            align-items: center;
-            justify-content: space-around;
-            text-align: center;
-            background-color: rgba(0, 0, 0, 0.6);
-            height: 5%;
+        .swiper-pagination-bullet {
+            background: black;
+            opacity: 1 !important;
+        }
+
+        .swiper-pagination-bullet-active {
+            opacity: 1 !important;
+            background: white !important;
+        }
+
+        .eventSwipperCard {
+
+            &__info {
+                color: #F9DBB6;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                flex-direction: column;
+                font-size: 18px;
+                z-index: 2;
+
+                svg {
+                    width: 15%;
+                    height: 15%;
+                    position: absolute;
+                    top: 2%;
+                    right: 2%;
+                    fill: #F9DBB6;
+                }
+
+                h1 {
+                    width: 100%;
+                    text-align: center;
+                    background-color: rgba(0, 0, 0, 0.3);
+                    font-family: 'goodTime', sans-serif;
+                    font-size: 25px;
+                }
+
+                button {
+                    width: 40%;
+                    height: 7%;
+                    background: rgb(249, 219, 182, 0.9);
+                    color: black;
+                    font-family: 'Rajdhani', sans-serif;
+                    font-size: 17px;
+                    border-radius: 10px;
+                    cursor: pointer;
+                }
+            }
+
+            &__botInfo {
+                display: flex;
+                width: 100%;
+                align-items: center;
+                justify-content: space-around;
+                text-align: center;
+                background-color: rgba(0, 0, 0, 0.3);
+                height: 5%;
+            }
         }
     }
-} 
+
+    
 }

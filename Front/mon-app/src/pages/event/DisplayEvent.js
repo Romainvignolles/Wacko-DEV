@@ -15,6 +15,7 @@ const EventPage = (props) => {
             .then((res) => {
                 setOneEvent(res.data)
                 setLoad(res)
+
             })
             .catch((err) => {
             })
@@ -22,14 +23,17 @@ const EventPage = (props) => {
 
     const description = () => {
         document.getElementById("eventDescription").innerHTML = oneEvent.description;
-
-
     }
 
     useEffect(() => {
         fetchOneEvent()
+    }, []);
+
+    useEffect(() => {
         description()
     }, [load]);
+
+
 
 
     return (
@@ -40,8 +44,9 @@ const EventPage = (props) => {
                 <div className="displayEvent__info__middle">
                     <div id="eventDescription"></div>
                     <div id="eventInfo">
-                        <h3>Gameplay:{oneEvent.environnement}</h3>
-                        <h3>Nombre de joueurs: {oneEvent.joueur}</h3>
+                        <button id="test" aria-label="gameplay">test</button>
+                        <h3 className="test" aria-label="gameplay" >Gameplay:{oneEvent.environnement}</h3>
+                        <h3 className="test" aria-label="Nombre de joueurs" >Nombre de joueurs: {oneEvent.joueur}</h3>
                         <h3>Serveur: {oneEvent.serveur}</h3>
                         <h3>Niveau minimum requis: {oneEvent.niveau}</h3>
                         <h3>Crimestat autorisé: {oneEvent.crimeStat}</h3>
