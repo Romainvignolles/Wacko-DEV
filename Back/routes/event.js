@@ -14,6 +14,9 @@ router.get('/getAllEvent', eventCtrl.getAllEvent)
 //recupérer un seul events
 router.get('/getOneEvent/:id', eventCtrl.getOneEvent)
 
+//modifier un event
+router.put('/modifyEvent/:id/:userId', eventCtrl.modifyEvent)
+
 
 
 module.exports = router;

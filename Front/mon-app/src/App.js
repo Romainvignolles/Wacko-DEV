@@ -14,6 +14,7 @@ import ErrorPage from "./pages/ErrorPage";
 import EventPage from "./pages/event/Event";
 import CreateEventPage from "./pages/event/CreateEvent";
 import DisplayEventPage from "./pages/event/DisplayEvent";
+import ModifyEvent from "./pages/event/ModifyEvent";
 
 import PrivateRoutes from "./utils/PrivateRoutes";
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/event" element={<EventPage />} />
           <Route path="/createEvent" element={<CreateEventPage />} />
           <Route path="/displayEvent" element={<DisplayEventPage />} />
+          <Route path="/modifyEvent" element={<ModifyEvent />} />
         </Route>
 
         <Route path="/" element={<Login />} />

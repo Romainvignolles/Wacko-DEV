@@ -463,7 +463,7 @@ body {
   border-right: 0px;
   border-bottom: 0px;
   font-family: "Rajdhani", sans-serif;
-  font-size: 17px;
+  font-size: 15px;
 }
 .createEventPage .eventLeft fieldset input {
   background-color: transparent;
@@ -581,6 +581,20 @@ body {
      object-fit: cover;
   opacity: 0.95;
 }
+.eventPageBackground .eventPage .swiper-button-next, .eventPageBackground .eventPage .swiper-rtl .swiper-button-prev {
+  right: 20%;
+  left: auto;
+}
+.eventPageBackground .eventPage .swiper-button-prev, .eventPageBackground .eventPage .swiper-rtl .swiper-button-next {
+  left: 20%;
+  right: auto;
+}
+.eventPageBackground .eventPage .swiper-button-next, .eventPageBackground .eventPage .swiper-button-prev {
+  top: 40% !important;
+}
+.eventPageBackground .eventPage .swiper-button-next:after, .eventPageBackground .eventPage .swiper-button-prev:after {
+  font-size: 80px !important;
+}
 .eventPageBackground .eventPage .swiper-pagination-bullet {
   background: black;
   opacity: 1 !important;
@@ -646,15 +660,26 @@ body {
   /* on génère un second élément en :before pour la flèche */
   /* pas de contour durant le :focus */
 }
+.displayEvent__title {
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.displayEvent__title h1 {
+  margin: 0 5%;
+}
+.displayEvent__title svg {
+  height: 60px;
+  fill: white;
+  position: absolute;
+  right: 2%;
+}
 .displayEvent__info {
   position: absolute;
   color: white;
   width: 100%;
   height: 100%;
-}
-.displayEvent__info h1 {
-  text-align: center;
-  background-color: rgba(0, 0, 0, 0.8);
 }
 .displayEvent__info #eventDescription {
   width: 30%;
@@ -671,8 +696,24 @@ body {
   background-color: #a5a5a5;
 }
 .displayEvent__info #eventInfo {
-  background-color: rgba(26, 42, 51, 0.8);
-  width: 50%;
+  width: 70%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 30%);
+  justify-content: space-between;
+  align-items: center;
+  justify-items: center;
+}
+.displayEvent__info #eventInfo h3 {
+  height: 60%;
+  width: 60%;
+  text-align: center;
+}
+.displayEvent__info #eventInfo img {
+  height: 60%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-bottom: 1px solid white;
 }
 .displayEvent__info__middle {
   height: 80%;
@@ -693,7 +734,6 @@ body {
   position: relative;
   /*les .picto-item deviennent référents*/
   cursor: help;
-  border-radius: 50%;
 }
 .displayEvent .test:hover:after,
 .displayEvent .test:focus:after {

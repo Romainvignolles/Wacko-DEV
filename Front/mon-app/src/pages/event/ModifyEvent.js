@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -18,7 +18,20 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const CreateEventPage = (props) => {
 
-    const [formData, setformData] = useState("");
+    let eventID = localStorage.getItem("eventID")
+    let userDiscriminator = localStorage.getItem("discriminator")
+
+
+    const [formData, setformData] = useState("");  // state pour le formulaire CKEditor
+
+
+    const [titre, setTitre] = useState("");  
+    const [date, setDate] = useState(""); 
+    const [lieu, setLieu] = useState("");
+    const [joueur, setJoueur] = useState(""); 
+    const [groupeur, setGroupeur] = useState("");
+  
+
 
 
     const forbidenShipRadioReset = (e) => {                 //reset radio button
@@ -31,11 +44,10 @@ const CreateEventPage = (props) => {
         document.getElementById('noStuff').checked = false
     }
     const back = (e) => {                        // boutton retour
-        window.location = "/AdminWebsite";
-
+        window.location = "/Event";
     }
 
-    const saveEvent = (e) => {   //création de l'event
+    const modifyEvent = (e) => {   //création de l'event
         e.preventDefault()
         const titre = document.getElementById('titre').value;
         const date = document.getElementById('date').value;
@@ -97,9 +109,9 @@ const CreateEventPage = (props) => {
             }, "3000")
 
         } else {
-            axios({                 // envoi des informations pour la création de l'event
-                method: "post",
-                url: `${process.env.REACT_APP_API_URL}api/addEvent`,
+            axios({                 // envoi des informations pour la modification de l'event
+                method: "put",
+                url: `${process.env.REACT_APP_API_URL}api/modifyEvent/${eventID}/${userDiscriminator}`,
                 data: {
                     titre,
                     date,
@@ -119,7 +131,7 @@ const CreateEventPage = (props) => {
                 }
             })
                 .then((res) => {
-                    toast.success('Évènement crée!', {
+                    toast.success('Modifications éffectuées!', {
                         position: "bottom-right",
                         autoClose: 3000,
                         hideProgressBar: false,
@@ -150,17 +162,44 @@ const CreateEventPage = (props) => {
 
     }
 
+    const displayEvent =(e) => { //recupération de l'event a modifier
+
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_API_URL}api/getOneEvent/${eventID}`,
+        })
+            .then((res) => {
+                console.log(res.data);
+
+                setTitre(res.data.titre);
+                setDate(res.data.date);
+                setLieu(res.data.lieu);
+                setJoueur(res.data.joueur);
+                setGroupeur(res.data.groupeur);
+
+            })
+            .catch((err) => {
+            })
+
+
+
+    }
+
+    useEffect(() => {
+        displayEvent()
+    }, []);
+
     return (
 
         <div className='createEventPage'>
 
             <div className='eventRight'>
                 <div className='eventRight__top'>
-                    <input id='titre' type="text" name="titre" placeholder="Titre" />
-                    <input id='date' type="text" name="date" placeholder="Date" />
-                    <input id='lieu' type="text" name="lieu" placeholder="Lieu" />
-                    <input id='joueur' type="text" name="joueur" placeholder="Nbr joueurs" />
-                    <input id='groupeur' type="text" name="groupeur" placeholder="Groupeur" />
+                    <input id='titre' type="text" name="titre" placeholder="Titre" defaultValue={titre}/>
+                    <input id='date' type="text" name="date" placeholder="Date" defaultValue={date}/>
+                    <input id='lieu' type="text" name="lieu" placeholder="Lieu" defaultValue={lieu}/>
+                    <input id='joueur' type="text" name="joueur" placeholder="Nbr joueurs" defaultValue={joueur}/>
+                    <input id='groupeur' type="text" name="groupeur" placeholder="Groupeur" defaultValue={groupeur}/>
                 </div>
 
                 <div className='eventRight__middle'>
@@ -237,7 +276,7 @@ const CreateEventPage = (props) => {
 
                     <p id='eventErrorMessage'></p>
 
-                    <button id='send' onClick={saveEvent}>Enregistrer</button>
+                    <button id='send' onClick={modifyEvent}>Enregistrer</button>
                     <ToastContainer />
 
                 </div>
