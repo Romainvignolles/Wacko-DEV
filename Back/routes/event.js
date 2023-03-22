@@ -17,6 +17,9 @@ router.get('/getOneEvent/:id', eventCtrl.getOneEvent)
 //modifier un event
 router.put('/modifyEvent/:id/:userId', eventCtrl.modifyEvent)
 
+//supprimer un event
+router.delete('/deleteEvent/:id', eventCtrl.deleteEvent)
+
 
 
 module.exports = router;

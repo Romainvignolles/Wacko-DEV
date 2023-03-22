@@ -12,6 +12,9 @@ import { EffectCoverflow, Pagination } from "swiper";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css'; 
+
 
 
 
@@ -24,13 +27,26 @@ const CreateEventPage = (props) => {
 
     const [formData, setformData] = useState("");  // state pour le formulaire CKEditor
 
+    const [image, setImage] = useState("");
+    const [description, setDescription] = useState([]);
 
-    const [titre, setTitre] = useState("");  
-    const [date, setDate] = useState(""); 
+
+    const [titre, setTitre] = useState("");
+    const [date, setDate] = useState("");
     const [lieu, setLieu] = useState("");
-    const [joueur, setJoueur] = useState(""); 
+    const [joueur, setJoueur] = useState("");
     const [groupeur, setGroupeur] = useState("");
-  
+
+    const [gameplay, setGameplay] = useState("");
+    const [serveur, setServeur] = useState("");
+    const [niveau, setNiveau] = useState("");
+    const [crimestat, setCrimestat] = useState("");
+    const [section, setSection] = useState("");
+
+    const [forbidenShip, setForbidenShip] = useState("");
+    const [forbidenWeapon, setForbidenWeapon] = useState("");
+    const [stuff, setStuff] = useState("");
+
 
 
 
@@ -46,6 +62,37 @@ const CreateEventPage = (props) => {
     const back = (e) => {                        // boutton retour
         window.location = "/Event";
     }
+    const deleteEvent = (e) => {                  // supprimer l'event
+        confirmAlert({
+            title: 'Confirmer la suppression',
+            message: 'Êtes-vous sûr de vouloir supprimer cet évènement ?',
+            buttons: [
+                {
+                    label: 'Oui',
+                    onClick: () => {
+                        axios({
+                            method: "delete",
+                            url: `${process.env.REACT_APP_API_URL}api/deleteEvent/${eventID}`,
+                        })
+                            .then((res) => {
+                                window.location = "/Event";
+                            })
+                            .catch((err) => {
+                            })
+                    }
+                },
+                {
+                    label: 'Non',
+                    onClick: () => {
+                        // Code à exécuter si l'utilisateur clique sur "Non"
+                    }
+                }
+            ]
+        });
+       
+
+    }
+
 
     const modifyEvent = (e) => {   //création de l'event
         e.preventDefault()
@@ -55,35 +102,35 @@ const CreateEventPage = (props) => {
         const joueur = document.getElementById('joueur').value;
         const groupeur = document.getElementById('groupeur').value;
 
-        const liveServer = document.getElementById('live').checked;
+        const liveServer = document.getElementById('Live').checked;
         const ptuServer = document.getElementById('PTU').checked;
         const selectedServer = liveServer ? 'Live' : ptuServer ? 'PTU' : '';
 
-        const Niveau1 = document.getElementById('debutant').checked;
-        const Niveau2 = document.getElementById('confirme').checked;
+        const Niveau1 = document.getElementById('Débutant').checked;
+        const Niveau2 = document.getElementById('Confirmé').checked;
         const minLVL = Niveau1 ? 'Débutant' : Niveau2 ? 'Confirmé' : '';
 
         const crimestatYes = document.getElementById('Oui').checked;
         const crimestatNo = document.getElementById('Non').checked;
         const crimeStat = crimestatYes ? 'Oui' : crimestatNo ? 'Non' : '';
 
-        const sectionVol = document.getElementById('vol').checked;
-        const sectionCombat = document.getElementById('combat').checked;
-        const sectionLogi = document.getElementById('logistique').checked;
-        const sectionAll = document.getElementById('toute').checked;
+        const sectionVol = document.getElementById('Vol').checked;
+        const sectionCombat = document.getElementById('Combat').checked;
+        const sectionLogi = document.getElementById('Logistique').checked;
+        const sectionAll = document.getElementById('Toute').checked;
         const eventType = sectionVol ? 'Vol' : sectionLogi ? 'Logistique' : sectionCombat ? 'Combat' : sectionAll ? 'Toute' : '';
 
         const gameplayFPS = document.getElementById('FPS').checked;
-        const gameplayLesdeux = document.getElementById('lesdeux').checked;
-        const dogfight = document.getElementById('dogfight').checked;
-        const entrainement = document.getElementById('entrainement').checked;
-        const multicrew = document.getElementById('multicrew').checked;
-        const course = document.getElementById('course').checked;
-        const logistique = document.getElementById('logistique').checked;
-        const equipe = document.getElementById('equipe').checked;
-        const solo = document.getElementById('solo').checked;
-        const divers = document.getElementById('divers').checked;
-        const environnement = gameplayFPS ? 'FPS' : dogfight ? 'Dogfight' : equipe ? 'Equipe' : solo ? 'Solo' : divers ? 'Divers' : entrainement ? 'Entraînement' : multicrew ? 'Multicrew' : course ? 'Course' : logistique ? 'Logistique' : gameplayLesdeux ? 'FPS/Pilotage' : '';
+        const gameplayLesdeux = document.getElementById('FPS/Dogfight').checked;
+        const dogfight = document.getElementById('Dogfight').checked;
+        const entrainement = document.getElementById('Entraînement').checked;
+        const multicrew = document.getElementById('Multicrew').checked;
+        const course = document.getElementById('Course').checked;
+        const logistique = document.getElementById('Logistique').checked;
+        const equipe = document.getElementById('Equipes').checked;
+        const solo = document.getElementById('Solo').checked;
+        const divers = document.getElementById('Divers').checked;
+        const environnement = gameplayFPS ? 'FPS' : dogfight ? 'Dogfight' : equipe ? 'Equipes' : solo ? 'Solo' : divers ? 'Divers' : entrainement ? 'Entraînement' : multicrew ? 'Multicrew' : course ? 'Course' : logistique ? 'Logistique' : gameplayLesdeux ? 'FPS/Dogfight' : '';
 
         const noForbidenShip = document.getElementById('noForbidenShip').checked;
         const yesForbidenShip = document.getElementById('yesForbidenShip').value;
@@ -162,20 +209,60 @@ const CreateEventPage = (props) => {
 
     }
 
-    const displayEvent =(e) => { //recupération de l'event a modifier
+    const displayEvent = async (e) => { //recupération de l'event a modifier
 
-        axios({
+        await axios({
             method: "get",
             url: `${process.env.REACT_APP_API_URL}api/getOneEvent/${eventID}`,
         })
             .then((res) => {
-                console.log(res.data);
+
+                setImage(res.data.image);
+                setDescription(res.data.description)
 
                 setTitre(res.data.titre);
                 setDate(res.data.date);
                 setLieu(res.data.lieu);
                 setJoueur(res.data.joueur);
                 setGroupeur(res.data.groupeur);
+
+                setGameplay(res.data.environnement);
+                setServeur(res.data.serveur);
+                setNiveau(res.data.niveau);
+                setCrimestat(res.data.crimeStat);
+                setSection(res.data.eventType);
+
+                setForbidenShip(res.data.forbidenShip);
+                setForbidenWeapon(res.data.forbidenWeapon);
+                setStuff(res.data.stuff);
+
+                document.getElementById(gameplay).checked = true
+                document.getElementById(serveur).checked = true
+                document.getElementById(niveau).checked = true
+                document.getElementById(crimestat).checked = true
+                document.getElementById(section).checked = true
+
+                if (forbidenShip === "Pas de restrictions") {
+                    document.getElementById('noForbidenShip').checked = true
+                } else {
+                    document.getElementById('yesForbidenShip').defaultValue = forbidenShip
+
+                }
+
+                if (forbidenWeapon === "Pas de restrictions") {
+                    document.getElementById('noForbidenWeapon').checked = true
+                } else {
+                    document.getElementById('yesForbidenWeapon').defaultValue = forbidenWeapon
+
+                }
+
+                if (stuff === "Pas de stuff requis") {
+                    document.getElementById('noStuff').checked = true
+                } else {
+                    document.getElementById('yesStuff').defaultValue = stuff
+
+                }
+
 
             })
             .catch((err) => {
@@ -185,9 +272,12 @@ const CreateEventPage = (props) => {
 
     }
 
+
+
     useEffect(() => {
         displayEvent()
-    }, []);
+    }, [gameplay]);
+
 
     return (
 
@@ -195,18 +285,18 @@ const CreateEventPage = (props) => {
 
             <div className='eventRight'>
                 <div className='eventRight__top'>
-                    <input id='titre' type="text" name="titre" placeholder="Titre" defaultValue={titre}/>
-                    <input id='date' type="text" name="date" placeholder="Date" defaultValue={date}/>
-                    <input id='lieu' type="text" name="lieu" placeholder="Lieu" defaultValue={lieu}/>
-                    <input id='joueur' type="text" name="joueur" placeholder="Nbr joueurs" defaultValue={joueur}/>
-                    <input id='groupeur' type="text" name="groupeur" placeholder="Groupeur" defaultValue={groupeur}/>
+                    <input id='titre' type="text" name="titre" placeholder="Titre" defaultValue={titre} />
+                    <input id='date' type="text" name="date" placeholder="Date" defaultValue={date} />
+                    <input id='lieu' type="text" name="lieu" placeholder="Lieu" defaultValue={lieu} />
+                    <input id='joueur' type="text" name="joueur" placeholder="Nbr joueurs" defaultValue={joueur} />
+                    <input id='groupeur' type="text" name="groupeur" placeholder="Groupeur" defaultValue={groupeur} />
                 </div>
 
                 <div className='eventRight__middle'>
                     <form>
                         <CKEditor
                             editor={ClassicEditor}
-                            data="<p>Description de l'event:</p>"
+                            data={description}
                             onReady={editor => {
                                 // You can store the "editor" and use when it is needed.
                                 console.log('Editor is ready to use!', editor);
@@ -244,6 +334,9 @@ const CreateEventPage = (props) => {
                             className="mySwiper"
                         >
                             <SwiperSlide>
+                                <img src={image} alt="" />
+                            </SwiperSlide>
+                            <SwiperSlide>
                                 <img src="./images/event/event1.png" alt="" />
                             </SwiperSlide>
                             <SwiperSlide>
@@ -275,6 +368,7 @@ const CreateEventPage = (props) => {
                     <button id='back' onClick={back}>Retour</button>
 
                     <p id='eventErrorMessage'></p>
+                    <button id='delete' onClick={deleteEvent}>Supprimer</button>
 
                     <button id='send' onClick={modifyEvent}>Enregistrer</button>
                     <ToastContainer />
@@ -286,7 +380,7 @@ const CreateEventPage = (props) => {
                 <fieldset>
                     <legend>Serveur</legend>
                     <div>
-                        <input type="radio" id="live" name="serveur" defaultChecked />
+                        <input type="radio" id="Live" name="serveur" />
                         <label htmlFor="live">Live</label>
                     </div>
 
@@ -298,13 +392,13 @@ const CreateEventPage = (props) => {
                 <fieldset>
                     <legend>Niveau minimum requis</legend>
                     <div>
-                        <input type="radio" id="debutant" name="niveau" defaultChecked />
-                        <label htmlFor="debutant">Débutant</label>
+                        <input type="radio" id="Débutant" name="niveau" />
+                        <label htmlFor="Débutant">Débutant</label>
                     </div>
 
                     <div>
-                        <input type="radio" id="confirme" name="niveau" />
-                        <label htmlFor="confirme">Confirmé</label>
+                        <input type="radio" id="Confirmé" name="niveau" />
+                        <label htmlFor="Confirmé">Confirmé</label>
                     </div>
                 </fieldset>
                 <fieldset>
@@ -322,22 +416,22 @@ const CreateEventPage = (props) => {
                 <fieldset>
                     <legend>Section</legend>
                     <div>
-                        <input type="radio" id="combat" name="Section" />
-                        <label htmlFor="combat">combat</label>
+                        <input type="radio" id="Combat" name="Section" />
+                        <label htmlFor="Combat">combat</label>
                     </div>
 
                     <div>
-                        <input type="radio" id="logistique" name="Section" />
-                        <label htmlFor="logistique">logistique</label>
+                        <input type="radio" id="Logistique" name="Section" />
+                        <label htmlFor="Logistique">logistique</label>
                     </div>
 
                     <div>
-                        <input type="radio" id="vol" name="Section" />
-                        <label htmlFor="vol">Vol</label>
+                        <input type="radio" id="Vol" name="Section" />
+                        <label htmlFor="Vol">Vol</label>
                     </div>
                     <div>
-                        <input type="radio" id="toute" name="Section" />
-                        <label htmlFor="toute">Toute</label>
+                        <input type="radio" id="Toute" name="Section" />
+                        <label htmlFor="Toute">Toute</label>
                     </div>
                 </fieldset>
                 <fieldset>
@@ -348,74 +442,74 @@ const CreateEventPage = (props) => {
                     </div>
 
                     <div>
-                        <input type="radio" id="dogfight" name="Gameplay" />
+                        <input type="radio" id="Dogfight" name="Gameplay" />
                         <label htmlFor="dogfight">Dogfight</label>
                     </div>
 
                     <div>
-                        <input type="radio" id="lesdeux" name="Gameplay" />
-                        <label htmlFor="lesdeux">FPS/Dogfight</label>
+                        <input type="radio" id="FPS/Dogfight" name="Gameplay" />
+                        <label htmlFor="FPS/Dogfight">FPS/Dogfight</label>
                     </div>
                     <div>
-                        <input type="radio" id="entrainement" name="Gameplay" />
-                        <label htmlFor="entrainement">Entraînement</label>
+                        <input type="radio" id="Entraînement" name="Gameplay" />
+                        <label htmlFor="Entraînement">Entraînement</label>
                     </div>
                     <div>
-                        <input type="radio" id="multicrew" name="Gameplay" />
-                        <label htmlFor="multicrew">Multicrew</label>
+                        <input type="radio" id="Multicrew" name="Gameplay" />
+                        <label htmlFor="Multicrew">Multicrew</label>
                     </div>
                     <div>
-                        <input type="radio" id="course" name="Gameplay" />
-                        <label htmlFor="course">Course</label>
+                        <input type="radio" id="Course" name="Gameplay" />
+                        <label htmlFor="Course">Course</label>
                     </div>
                     <div>
-                        <input type="radio" id="logistique" name="Gameplay" />
-                        <label htmlFor="logistique">Logistique</label>
+                        <input type="radio" id="Logistique" name="Gameplay" />
+                        <label htmlFor="Logistique">Logistique</label>
                     </div>
                     <div>
-                        <input type="radio" id="equipe" name="Gameplay" />
-                        <label htmlFor="equipe">Equipes</label>
+                        <input type="radio" id="Equipes" name="Gameplay" />
+                        <label htmlFor="Equipes">Equipes</label>
                     </div>
                     <div>
-                        <input type="radio" id="solo" name="Gameplay" />
-                        <label htmlFor="solo">Solo</label>
+                        <input type="radio" id="Solo" name="Gameplay" />
+                        <label htmlFor="Solo">Solo</label>
                     </div>
                     <div>
-                        <input type="radio" id="divers" name="Gameplay" />
-                        <label htmlFor="divers">Divers</label>
+                        <input type="radio" id="Divers" name="Gameplay" />
+                        <label htmlFor="Divers">Divers</label>
                     </div>
                 </fieldset>
                 <fieldset>
                     <legend>Restriction de vaisseaux</legend>
                     <div>
-                        <input type="radio" id="noForbidenShip" name="forbidenShip" defaultChecked />
+                        <input type="radio" id="noForbidenShip" name="forbidenShip" />
                         <label htmlFor="noForbidenShip">Aucune</label>
                     </div>
 
                     <div>
-                        <input type="text" onClick={forbidenShipRadioReset} id="yesForbidenShip" name="forbidenShip" placeholder="Restrictions" />
+                        <input type="text" onChange={forbidenShipRadioReset} id="yesForbidenShip" name="forbidenShip" placeholder="Restrictions" />
                     </div>
                 </fieldset>
                 <fieldset>
                     <legend>Restriction d'armes</legend>
                     <div>
-                        <input type="radio" id="noForbidenWeapon" name="forbidenWeapon" defaultChecked />
+                        <input type="radio" id="noForbidenWeapon" name="forbidenWeapon" />
                         <label htmlFor="noForbidenWeapon">Aucune</label>
                     </div>
 
                     <div>
-                        <input type="text" onClick={forbidenWeaponRadioReset} id="yesForbidenWeapon" name="forbidenWeapon" placeholder="Restrictions" />
+                        <input type="text" onChange={forbidenWeaponRadioReset} id="yesForbidenWeapon" name="forbidenWeapon" placeholder="Restrictions" />
                     </div>
                 </fieldset>
                 <fieldset>
                     <legend>Stuff requis</legend>
                     <div>
-                        <input type="radio" id="noStuff" name="stuff" defaultChecked />
+                        <input type="radio" id="noStuff" name="stuff" />
                         <label htmlFor="noStuff">Aucun</label>
                     </div>
 
                     <div>
-                        <input type="text" onClick={stuffRadioReset} id="yesStuff" name="stuff" placeholder="Stuff requis" />
+                        <input type="text" onChange={stuffRadioReset} id="yesStuff" name="stuff" placeholder="Stuff requis" />
                     </div>
                 </fieldset>
             </div>

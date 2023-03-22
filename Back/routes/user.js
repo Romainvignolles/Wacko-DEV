@@ -15,7 +15,7 @@ router.get('/user/:id',auth, userCtrl.getOneUser);
 router.put('/admin/:id',auth,userCtrl.modifyMemberRight);
 
 //supprimer un membre de la BDD
-router.delete('/deleteUser/:id',userCtrl.deleteUser)
+router.delete('/deleteUser/:id',auth,userCtrl.deleteUser)
 
 //ajouter un membre a la BDD
 router.post('/addUser', userCtrl.addUser);

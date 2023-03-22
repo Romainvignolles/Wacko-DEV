@@ -64,13 +64,6 @@ const LoginForm = (props) => {
 
                                 let avatarUrl = `https://cdn.discordapp.com/avatars/${discordId}/${avatarCode}.png`
 
-                                console.log(res.data);
-                                console.log(pseudo);
-                                console.log(role);
-                                console.log(discriminator);
-                                console.log(date);
-                                console.log(avatarUrl);
-
                                 axios({                 // envoi de ses information en Backend pour traitement
                                     method: "post",
                                     url: `${process.env.REACT_APP_API_URL}api/discordAuth`,

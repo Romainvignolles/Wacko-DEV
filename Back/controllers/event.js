@@ -88,3 +88,11 @@ exports.modifyEvent = (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
 };
 
+//supprimer un event
+exports.deleteEvent = (req, res, next) => {
+    Event.destroy({ where: { id: req.params.id } })
+        .then(() => res.status(200).json({ message: 'event supprimé' }))
+        .catch(error => res.status(400).json({ error }));
+};
+
+

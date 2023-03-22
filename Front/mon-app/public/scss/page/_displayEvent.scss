@@ -12,8 +12,18 @@
         align-items: center;
         justify-content: center;
 
+        button{
+            position: absolute;
+            left: 3%;
+            width: 10%;
+            height: 3%;
+            border-radius: 10px;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 15px;
+        }
+
         h1 {
-            margin: 0 5%;
+            margin: 0 10%;
         }
 
         svg {
