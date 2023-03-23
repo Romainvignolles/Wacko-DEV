@@ -680,10 +680,15 @@ body {
   align-items: center;
   justify-content: center;
 }
-.displayEvent__title button {
+.displayEvent__title .adminButton {
   position: absolute;
   left: 3%;
-  width: 10%;
+  display: flex;
+  width: 20%;
+  justify-content: space-evenly;
+}
+.displayEvent__title Button {
+  width: 40%;
   height: 3%;
   border-radius: 10px;
   font-family: "Rajdhani", sans-serif;
@@ -693,6 +698,9 @@ body {
   margin: 0 10%;
 }
 .displayEvent__title svg {
+  height: 60px;
+}
+.displayEvent__title #roleSvg {
   height: 60px;
   fill: white;
   position: absolute;

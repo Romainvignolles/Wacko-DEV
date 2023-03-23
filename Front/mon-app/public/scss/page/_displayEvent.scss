@@ -12,10 +12,16 @@
         align-items: center;
         justify-content: center;
 
-        button{
+        .adminButton{
             position: absolute;
             left: 3%;
-            width: 10%;
+            display: flex;
+            width: 20%;
+            justify-content: space-evenly;
+        }
+        Button{
+            
+            width: 40%;
             height: 3%;
             border-radius: 10px;
             font-family: 'Rajdhani', sans-serif;
@@ -26,7 +32,10 @@
             margin: 0 10%;
         }
 
-        svg {
+        svg{
+            height: 60px; 
+        }
+        #roleSvg {
             height: 60px;
             fill: white;
             position: absolute;
