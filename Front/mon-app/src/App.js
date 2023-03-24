@@ -10,6 +10,7 @@ import ProfilPage from "./pages/ProfilPage";
 import MembrePage from "./pages/MembrePage";
 import HangarPage from "./pages/HangarPage";
 import AdminWebsitePage from "./pages/AdminWebsite";
+import AdminImagePage from "./pages/AdminImagePage";
 import ErrorPage from "./pages/ErrorPage";
 import EventPage from "./pages/event/Event";
 import CreateEventPage from "./pages/event/CreateEvent";
@@ -31,6 +32,7 @@ function App() {
           <Route path="/Hangar" element={<HangarPage />} />
           <Route path="/Administration" element={<Administration />} />
           <Route path="/AdminWebsite" element={<AdminWebsitePage />} />
+          <Route path="/AdminImagePage" element={<AdminImagePage />} />
           <Route path="/event" element={<EventPage />} />
           <Route path="/createEvent" element={<CreateEventPage />} />
           <Route path="/displayEvent" element={<DisplayEventPage />} />

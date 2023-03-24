@@ -22,6 +22,7 @@ const AdminNavbar = () => {
                     <div className='adminNavbar__block__menu'>
                         <Link to="/Administration"><button className='adminNavbar__block__menu__button' id='membres'><FontAwesomeIcon icon={faAddressBook} /></button></Link>
                         <Link to="/AdminWebsite"><button className='adminNavbar__block__menu__button' id='section'><FontAwesomeIcon icon={faScrewdriverWrench} /></button></Link>
+                        <Link to="/AdminImagePage"><button className='adminNavbar__block__menu__button' id='section'>Image</button></Link>
                     </div>
                 </div>
             </div>

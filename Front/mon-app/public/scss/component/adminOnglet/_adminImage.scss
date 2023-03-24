@@ -1,0 +1,97 @@
+.adminImage {
+    width: 100%;
+    margin: auto;
+    height: 75%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border-top: 35px solid rgba(0, 0, 0, 0.6);
+    color: white;
+    align-items: center;
+
+    &__top {
+        display: flex;
+        align-items: center;
+        width: 80%;
+        justify-content: space-around;
+
+        input {
+            display: none;
+        }
+
+        label {
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+
+            svg {
+                height: 100%;
+            }
+        }
+
+        h1 {
+            text-align: center;
+        }
+    }
+
+    .displayAllImage {
+        height: 100%;
+        width: 80%;
+        overflow: auto;
+        display: grid;
+        grid-template-columns: repeat(3, 30%);
+        justify-content: space-between;
+        align-items: center;
+        justify-items: center;
+        grid-gap: 30px;
+
+        &::-webkit-scrollbar {
+            width: 5px;
+            background-color: #474747;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: #a5a5a5;
+
+        }
+
+        &__display {
+            height: 200px;
+            margin-bottom: 20px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        button {
+            height: 30px;
+            position: absolute;
+            background: transparent;
+            border: none;
+            height: 100%;
+            width: 100%;
+            cursor: pointer;
+            z-index: 2;
+
+            svg {
+                height: 100px;
+                color: red;
+                display: none;
+                pointer-events: none;
+            }
+        }
+
+        img {
+            height: 100%;
+            object-fit: cover;
+            filter: blur(0);
+        }
+
+        button:hover+img {
+            filter: blur(3px);
+        }
+    }
+}

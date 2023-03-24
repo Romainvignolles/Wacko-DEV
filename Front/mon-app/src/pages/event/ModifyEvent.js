@@ -126,11 +126,11 @@ const CreateEventPage = (props) => {
         const entrainement = document.getElementById('Entraînement').checked;
         const multicrew = document.getElementById('Multicrew').checked;
         const course = document.getElementById('Course').checked;
-        const logistique = document.getElementById('Logistique').checked;
+        const logistique = document.getElementById('Logisticien').checked;
         const equipe = document.getElementById('Equipes').checked;
         const solo = document.getElementById('Solo').checked;
         const divers = document.getElementById('Divers').checked;
-        const environnement = gameplayFPS ? 'FPS' : dogfight ? 'Dogfight' : equipe ? 'Equipes' : solo ? 'Solo' : divers ? 'Divers' : entrainement ? 'Entraînement' : multicrew ? 'Multicrew' : course ? 'Course' : logistique ? 'Logistique' : gameplayLesdeux ? 'FPS/Dogfight' : '';
+        const environnement = gameplayFPS ? 'FPS' : dogfight ? 'Dogfight' : equipe ? 'Equipes' : solo ? 'Solo' : divers ? 'Divers' : entrainement ? 'Entraînement' : multicrew ? 'Multicrew' : course ? 'Course' : logistique ? 'Logisticien' : gameplayLesdeux ? 'FPS/Dogfight' : '';
 
         const noForbidenShip = document.getElementById('noForbidenShip').checked;
         const yesForbidenShip = document.getElementById('yesForbidenShip').value;
@@ -463,8 +463,8 @@ const CreateEventPage = (props) => {
                         <label htmlFor="Course">Course</label>
                     </div>
                     <div>
-                        <input type="radio" id="Logistique" name="Gameplay" />
-                        <label htmlFor="Logistique">Logistique</label>
+                        <input type="radio" id="Logisticien" name="Gameplay" />
+                        <label htmlFor="Logisticien">Logisticien</label>
                     </div>
                     <div>
                         <input type="radio" id="Equipes" name="Gameplay" />

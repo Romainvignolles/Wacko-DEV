@@ -800,6 +800,15 @@ body {
   outline: none;
 }
 
+.adminImagePage {
+  background-image: url("/images/fond-ecran-noir.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  height: 100%;
+  width: 100%;
+}
+
 .navbar {
   display: flex;
   flex-direction: column;
@@ -1220,6 +1229,90 @@ body {
 .adminWebsite__card__block__addLink__bottom button:active {
   scale: 1;
   transition: 0.1s ease-in-out;
+}
+
+.adminImage {
+  width: 100%;
+  margin: auto;
+  height: 75%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  border-top: 35px solid rgba(0, 0, 0, 0.6);
+  color: white;
+  align-items: center;
+}
+.adminImage__top {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  justify-content: space-around;
+}
+.adminImage__top input {
+  display: none;
+}
+.adminImage__top label {
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+.adminImage__top label svg {
+  height: 100%;
+}
+.adminImage__top h1 {
+  text-align: center;
+}
+.adminImage .displayAllImage {
+  height: 100%;
+  width: 80%;
+  overflow: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  justify-content: space-between;
+  align-items: center;
+  justify-items: center;
+  grid-gap: 30px;
+}
+.adminImage .displayAllImage::-webkit-scrollbar {
+  width: 5px;
+  background-color: #474747;
+}
+.adminImage .displayAllImage::-webkit-scrollbar-thumb {
+  background-color: #a5a5a5;
+}
+.adminImage .displayAllImage__display {
+  height: 200px;
+  margin-bottom: 20px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.adminImage .displayAllImage button {
+  height: 30px;
+  position: absolute;
+  background: transparent;
+  border: none;
+  height: 100%;
+  width: 100%;
+  cursor: pointer;
+  z-index: 2;
+}
+.adminImage .displayAllImage button svg {
+  height: 100px;
+  color: red;
+  display: none;
+  pointer-events: none;
+}
+.adminImage .displayAllImage img {
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  filter: blur(0);
+}
+.adminImage .displayAllImage button:hover + img {
+  filter: blur(3px);
 }
 
 .membre {

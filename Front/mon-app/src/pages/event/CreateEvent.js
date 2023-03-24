@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useRef, useState } from "react";
+import React, { useEffect, useState } from 'react';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
@@ -19,6 +19,10 @@ import 'react-toastify/dist/ReactToastify.css';
 const CreateEventPage = (props) => {
 
     const [formData, setformData] = useState("");
+    const [load, setLoad] = useState("");
+    const [allImage, setAllImage] = useState([]);
+
+
 
 
     const forbidenShipRadioReset = (e) => {                 //reset radio button
@@ -67,11 +71,11 @@ const CreateEventPage = (props) => {
         const entrainement = document.getElementById('entrainement').checked;
         const multicrew = document.getElementById('multicrew').checked;
         const course = document.getElementById('course').checked;
-        const logistique = document.getElementById('logistique').checked;
+        const logistique = document.getElementById('logisticien').checked;
         const equipe = document.getElementById('equipe').checked;
         const solo = document.getElementById('solo').checked;
         const divers = document.getElementById('divers').checked;
-        const environnement = gameplayFPS ? 'FPS' : dogfight ? 'Dogfight' : equipe ? 'Equipe' : solo ? 'Solo' : divers ? 'Divers' : entrainement ? 'Entraînement' : multicrew ? 'Multicrew' : course ? 'Course' : logistique ? 'Logistique' : gameplayLesdeux ? 'FPS/Pilotage' : '';
+        const environnement = gameplayFPS ? 'FPS' : dogfight ? 'Dogfight' : equipe ? 'Equipe' : solo ? 'Solo' : divers ? 'Divers' : entrainement ? 'Entraînement' : multicrew ? 'Multicrew' : course ? 'Course' : logistique ? 'Logisticien' : gameplayLesdeux ? 'FPS/Pilotage' : '';
 
         const noForbidenShip = document.getElementById('noForbidenShip').checked;
         const yesForbidenShip = document.getElementById('yesForbidenShip').value;
@@ -150,6 +154,29 @@ const CreateEventPage = (props) => {
 
     }
 
+    const getImage = (e) => {   // recupère les images 
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_API_URL}api/getImage`,
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+
+        })
+            .then((res) => {
+                console.log(res);
+                setAllImage(res.data)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
+    useEffect(() => {
+        getImage()
+    }, [load]);
+
+
     return (
 
         <div className='createEventPage'>
@@ -204,27 +231,11 @@ const CreateEventPage = (props) => {
                             modules={[EffectCoverflow, Pagination]}
                             className="mySwiper"
                         >
-                            <SwiperSlide>
-                                <img src="./images/event/event1.png" alt="" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src="./images/event/event2.png" alt="" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src="./images/event/event3.png" alt="" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src="./images/event/event4.png" alt="" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src="./images/event/event5.png" alt="" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src="./images/event/event6.png" alt="" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src="./images/event/event7.png" alt="" />
-                            </SwiperSlide>
+                             {allImage.map(image => (
+                                    <SwiperSlide key={image.id} id={image.id} >
+                                        <img src={image.image} alt="" />
+                                    </SwiperSlide>
+                                ))}
 
                         </Swiper>
                     </div>
@@ -307,12 +318,10 @@ const CreateEventPage = (props) => {
                         <input type="radio" id="FPS" name="Gameplay" />
                         <label htmlFor="FPS">FPS</label>
                     </div>
-
                     <div>
                         <input type="radio" id="dogfight" name="Gameplay" />
                         <label htmlFor="dogfight">Dogfight</label>
                     </div>
-
                     <div>
                         <input type="radio" id="lesdeux" name="Gameplay" />
                         <label htmlFor="lesdeux">FPS/Dogfight</label>
@@ -330,8 +339,8 @@ const CreateEventPage = (props) => {
                         <label htmlFor="course">Course</label>
                     </div>
                     <div>
-                        <input type="radio" id="logistique" name="Gameplay" />
-                        <label htmlFor="logistique">Logistique</label>
+                        <input type="radio" id="logisticien" name="Gameplay" />
+                        <label htmlFor="logisticien">Logisticien</label>
                     </div>
                     <div>
                         <input type="radio" id="equipe" name="Gameplay" />
