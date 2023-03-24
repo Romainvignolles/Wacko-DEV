@@ -17,4 +17,7 @@ router.get('/starships/:id',auth, starshipsCtrl.getOneShips);
 //supprime le vaisseau selectionné
 router.delete('/starships/:id',auth, starshipsCtrl.deleteship);
 
+//modifie le vaisseau selectionné
+router.put('/modifyStarships/:id',starshipsCtrl.modifyShip);
+
 module.exports = router;

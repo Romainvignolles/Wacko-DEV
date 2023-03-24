@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
+
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 
 const WebsiteAdmin = () => {
@@ -24,6 +26,10 @@ const WebsiteAdmin = () => {
 
     const [linkId, setLinkId] = useState("");
     const [shipId, setShipId] = useState("");
+
+    const [shipTitle, setShipTitle] = useState("");
+    const [shipImage, setShipImage] = useState("");
+    const [shipUrl, setShipUrl] = useState("");
 
 
 
@@ -58,61 +64,97 @@ const WebsiteAdmin = () => {
         fetchShips()
     }, [load]);
 
-    //afficher le bouton supprimer des link
+    //cibler des link au clic
     const displayDeleteLinkButton = (e) => {
         let linkList = document.querySelectorAll('.linkList')
         for (const link of linkList) {
             link.style.color = "white"
         }
-        document.getElementById("deleteLinkButton").style.display = "flex";
         e.target.style.color = "red"
         setLinkId(e.target.id);
     }
 
-    //afficher le bouton supprimer des vaisseaux
+    //cibler des vaisseaux au clic
     const displayDeleteShipsButton = (e) => {
+        document.getElementById("formModifyShip").reset();
+
         let shipList = document.querySelectorAll('.shipList')
         for (const ship of shipList) {
             ship.style.color = "white"
         }
-        document.getElementById("deleteShipsButton").style.display = "flex";
         e.target.style.color = "red"
         setShipId(e.target.id);
+        setShipTitle(e.target.getAttribute("dataTitle"));
+        setShipImage(e.target.getAttribute("dataImage"));
+        setShipUrl(e.target.getAttribute("dataurl"));
     }
 
     //supprimer un lien
     const deleteLink = (e) => {
 
-        axios({
-            method: "DELETE",
-            url: `${process.env.REACT_APP_API_URL}api/deleteLink/${linkId}`,
-        })
-            .then((res) => {
-                console.log(res);
-                setLoad(res)
-                document.getElementById("deleteLinkButton").style.display = "none";
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-
+        confirmAlert({
+            title: 'Confirmer la suppression',
+            message: 'Êtes-vous sûr de vouloir supprimer ce lien ?',
+            buttons: [
+                {
+                    label: 'Oui',
+                    onClick: () => {
+                        axios({
+                            method: "DELETE",
+                            url: `${process.env.REACT_APP_API_URL}api/deleteLink/${linkId}`,
+                        })
+                            .then((res) => {
+                                setLoad(res)
+                            })
+                            .catch((err) => {
+                            })
+                    }
+                },
+                {
+                    label: 'Non',
+                    onClick: () => {
+                        // Code à exécuter si l'utilisateur clique sur "Non"
+                    }
+                }
+            ]
+        });
     }
 
     //supprimer un vaisseau
     const deleteShip = (e) => {
+        confirmAlert({
+            title: 'Confirmer la suppression',
+            message: 'Êtes-vous sûr de vouloir supprimer cette vaisseau ?',
+            buttons: [
+                {
+                    label: 'Oui',
+                    onClick: () => {
+                        axios({
+                            method: "DELETE",
+                            url: `${process.env.REACT_APP_API_URL}api/starships/${shipId}`,
+                        })
+                            .then((res) => {
+                                setLoad(res)
+                                document.getElementById("formModifyShip").reset();
+                                setShipTitle("");
+                                setShipImage("");
+                                setShipUrl("")
 
-        axios({
-            method: "DELETE",
-            url: `${process.env.REACT_APP_API_URL}api/starships/${shipId}`,
-        })
-            .then((res) => {
-                console.log(res);
-                setLoad(res)
-                document.getElementById("deleteShipsButton").style.display = "none";
-            })
-            .catch((err) => {
-                console.log(err);
-            })
+                            })
+                            .catch((err) => {
+                            })
+                    }
+                },
+                {
+                    label: 'Non',
+                    onClick: () => {
+                        // Code à exécuter si l'utilisateur clique sur "Non"
+                    }
+                }
+            ]
+        });
+
+       
 
     }
 
@@ -195,11 +237,38 @@ const WebsiteAdmin = () => {
 
     }
 
+    //modifier un vaisseau
+    const modifyShip = (e) => {
+
+        let title = document.getElementById("ShipName").value;
+        let image = document.getElementById("shipImage").value;
+        let link = document.getElementById("shipUrl").value;
+
+        axios({
+            method: "put",
+            url: `${process.env.REACT_APP_API_URL}api/modifyStarships/${shipId}`,
+            data: {
+                name: title,
+                image,
+                link
+            }
+        })
+            .then((res) => {
+                document.getElementById("formModifyShip").reset();
+                setLoad(res)
+                setShipTitle("");
+                setShipImage("");
+                setShipUrl("")
+            })
+            .catch((err) => {
+            })
+    }
+
+
+
     return (
 
         <div className='adminWebsite'>
-
-            <Link to="/CreateEvent"><button className='navbar__button' id='presentation'>Crée un event</button></Link>
 
             <div className='adminWebsite__card'>
                 <h1>Liens Utiles</h1>
@@ -213,7 +282,6 @@ const WebsiteAdmin = () => {
                                 </span>
                             ))}
                         </div>
-                        <button onClick={deleteLink} id='deleteLinkButton' className='adminWebsite__card__block__displayLink__button'>Supprimer</button>
 
                     </div>
                     <div className='adminWebsite__card__block__addLink'>
@@ -246,6 +314,7 @@ const WebsiteAdmin = () => {
                             </fieldset>
 
                             <button onClick={addLink}>Ajouter ce lien</button>
+                            <button onClick={deleteLink} id='deleteLinkButton' className='adminWebsite__card__block__displayLink__button--delete'>Supprimer</button>
 
                         </div>
 
@@ -263,21 +332,25 @@ const WebsiteAdmin = () => {
                         <h3>{shipArray.length} vaisseaux:</h3>
                         <div className='adminWebsite__card__block__displayLink__list'>
                             {shipArray.map(ship => (
-                                <span className='shipList' onClick={displayDeleteShipsButton} key={ship.id} id={ship.id}>
+                                <span className='shipList' onClick={displayDeleteShipsButton} dataImage={ship.image} dataUrl={ship.link} dataTitle={ship.name} key={ship.id} id={ship.id}>
                                     {ship.name}
                                 </span>
                             ))}
                         </div>
-                        <button onClick={deleteShip} id='deleteShipsButton' className='adminWebsite__card__block__displayLink__button'>Supprimer</button>
 
                     </div>
                     <div className='adminWebsite__card__block__addLink'>
                         <h3>Ajouter un vaisseau:</h3>
                         <div className='adminWebsite__card__block__addLink__bottom'>
-                            <input className='adminWebsite__card__block__addLink__bottom__input' id='ShipName' type="text" name="titre" size="10" placeholder="Nom du vaisseau" />
-                            <input className='adminWebsite__card__block__addLink__bottom__input' id='shipUrl' type="text" name="lien" size="10" placeholder="Lien RSI" />
-                            <input className='adminWebsite__card__block__addLink__bottom__input' id='shipImage' type="text" name="image" size="10" placeholder="Image" />
-                            <button onClick={addShip}>Ajouter ce vaisseau</button>
+                            <form id='formModifyShip'>
+                                <input className='adminWebsite__card__block__addLink__bottom__input' id='ShipName' type="text" name="titre" size="10" placeholder="Nom du vaisseau" defaultValue={shipTitle} />
+                                <input className='adminWebsite__card__block__addLink__bottom__input' id='shipUrl' type="text" name="lien" size="10" placeholder="Lien RSI" defaultValue={shipUrl} />
+                                <input className='adminWebsite__card__block__addLink__bottom__input' id='shipImage' type="text" name="image" size="10" placeholder="Image" defaultValue={shipImage} />
+
+                            </form>
+                            <button onClick={addShip}>Ajouter le vaisseau</button>
+                            <button onClick={modifyShip}>Modifier</button>
+                            <button onClick={deleteShip} id='deleteShipsButton' className='adminWebsite__card__block__displayLink__button'>Supprimer</button>
                         </div>
                     </div>
                 </div>

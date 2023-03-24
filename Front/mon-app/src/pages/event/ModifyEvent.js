@@ -24,6 +24,9 @@ const CreateEventPage = (props) => {
     let eventID = localStorage.getItem("eventID")
     let userDiscriminator = localStorage.getItem("discriminator")
 
+    const [load, setLoad] = useState("");
+    const [allImage, setAllImage] = useState([]);
+
 
     const [formData, setformData] = useState("");  // state pour le formulaire CKEditor
 
@@ -92,7 +95,6 @@ const CreateEventPage = (props) => {
        
 
     }
-
 
     const modifyEvent = (e) => {   //création de l'event
         e.preventDefault()
@@ -272,10 +274,29 @@ const CreateEventPage = (props) => {
 
     }
 
+    const getImage = (e) => {   // recupère les images 
+        axios({
+            method: "get",
+            url: `${process.env.REACT_APP_API_URL}api/getImage`,
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+
+        })
+            .then((res) => {
+                console.log(res);
+                setAllImage(res.data)
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }
+
 
 
     useEffect(() => {
         displayEvent()
+        getImage()
     }, [gameplay]);
 
 
@@ -336,27 +357,11 @@ const CreateEventPage = (props) => {
                             <SwiperSlide>
                                 <img src={image} alt="" />
                             </SwiperSlide>
-                            <SwiperSlide>
-                                <img src="./images/event/event1.png" alt="" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src="./images/event/event2.png" alt="" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src="./images/event/event3.png" alt="" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src="./images/event/event4.png" alt="" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src="./images/event/event5.png" alt="" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src="./images/event/event6.png" alt="" />
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <img src="./images/event/event7.png" alt="" />
-                            </SwiperSlide>
+                            {allImage.map(image => (
+                                    <SwiperSlide key={image.id} id={image.id} >
+                                        <img src={image.image} alt="" />
+                                    </SwiperSlide>
+                                ))}
 
                         </Swiper>
                     </div>

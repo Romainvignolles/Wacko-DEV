@@ -20,9 +20,10 @@ const AdminNavbar = () => {
                     </div>
 
                     <div className='adminNavbar__block__menu'>
-                        <Link to="/Administration"><button className='adminNavbar__block__menu__button' id='membres'><FontAwesomeIcon icon={faAddressBook} /></button></Link>
-                        <Link to="/AdminWebsite"><button className='adminNavbar__block__menu__button' id='section'><FontAwesomeIcon icon={faScrewdriverWrench} /></button></Link>
-                        <Link to="/AdminImagePage"><button className='adminNavbar__block__menu__button' id='section'>Image</button></Link>
+                        <Link to="/CreateEvent"><button className='adminNavbar__block__menu__button' >Crée un event</button></Link>
+                        <Link to="/Administration"><button className='adminNavbar__block__menu__button' ><FontAwesomeIcon icon={faAddressBook} /></button></Link>
+                        <Link to="/AdminWebsite"><button className='adminNavbar__block__menu__button' ><FontAwesomeIcon icon={faScrewdriverWrench} /></button></Link>
+                        <Link to="/AdminImagePage"><button className='adminNavbar__block__menu__button' >Image</button></Link>
                     </div>
                 </div>
             </div>

@@ -9,6 +9,12 @@
     color: white;
     align-items: center;
 
+    .file{
+        &:hover{
+            scale: 1.05;
+        }
+    }
+
     &__top {
         display: flex;
         align-items: center;
@@ -24,6 +30,8 @@
             cursor: pointer;
             display: flex;
             align-items: center;
+
+         
 
             svg {
                 height: 100%;
@@ -65,7 +73,7 @@
             justify-content: center;
 
         }
-
+       
         button {
             height: 30px;
             position: absolute;

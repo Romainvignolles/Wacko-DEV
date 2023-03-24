@@ -7,6 +7,42 @@
     justify-content: space-around;
     border-top: 35px solid $primaryOpacity;
 
+    #deleteLinkButton,
+    #deleteShipsButton {
+        display: flex;
+        width: 180px;
+        height: 40px;
+        color: $primary;
+        background-color: red;
+        font-size: 20px;
+        border-radius: 10px;
+        font-family: 'Rajdhani', sans-serif;
+        justify-content: center;
+        align-items: center;
+
+
+        &:hover {
+            scale: 1.1;
+            transition: 0.1s ease-in-out;
+        }
+
+        &:active {
+            scale: 1;
+            transition: 0.1s ease-in-out;
+
+        }
+
+    }
+
+    #formModifyShip {
+        height: 60%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+    }
+
     &__card {
         height: 80%;
         width: 30%;
@@ -63,7 +99,7 @@
                 }
 
                 button {
-                    display: none;
+                    display: flex;
                     width: 180px;
                     height: 40px;
                     color: $primary;
@@ -106,7 +142,7 @@
 
                     &__input {
                         height: 25px;
-                        width: 50%;
+                        width: 70%;
                         border: none;
                         border-bottom: 2px solid $secondary;
                         background-color: transparent;

@@ -1119,6 +1119,37 @@ body {
   justify-content: space-around;
   border-top: 35px solid rgba(0, 0, 0, 0.6);
 }
+.adminWebsite #deleteLinkButton,
+.adminWebsite #deleteShipsButton {
+  display: flex;
+  width: 180px;
+  height: 40px;
+  color: black;
+  background-color: red;
+  font-size: 20px;
+  border-radius: 10px;
+  font-family: "Rajdhani", sans-serif;
+  justify-content: center;
+  align-items: center;
+}
+.adminWebsite #deleteLinkButton:hover,
+.adminWebsite #deleteShipsButton:hover {
+  scale: 1.1;
+  transition: 0.1s ease-in-out;
+}
+.adminWebsite #deleteLinkButton:active,
+.adminWebsite #deleteShipsButton:active {
+  scale: 1;
+  transition: 0.1s ease-in-out;
+}
+.adminWebsite #formModifyShip {
+  height: 60%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
 .adminWebsite__card {
   height: 80%;
   width: 30%;
@@ -1168,7 +1199,7 @@ body {
   cursor: pointer;
 }
 .adminWebsite__card__block__displayLink button {
-  display: none;
+  display: flex;
   width: 180px;
   height: 40px;
   color: black;
@@ -1205,7 +1236,7 @@ body {
 }
 .adminWebsite__card__block__addLink__bottom__input {
   height: 25px;
-  width: 50%;
+  width: 70%;
   border: none;
   border-bottom: 2px solid white;
   background-color: transparent;
@@ -1241,6 +1272,9 @@ body {
   border-top: 35px solid rgba(0, 0, 0, 0.6);
   color: white;
   align-items: center;
+}
+.adminImage .file:hover {
+  scale: 1.05;
 }
 .adminImage__top {
   display: flex;
@@ -1944,5 +1978,17 @@ body {
 }
 
 .swiper-pagination {
+  color: white !important;
+}
+
+.react-confirm-alert-overlay {
+  background: transparent !important;
+}
+
+.react-confirm-alert-body {
+  background-image: url("/images/fond-ecran-noir.jpg") !important;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
   color: white !important;
 }/*# sourceMappingURL=main.css.map */

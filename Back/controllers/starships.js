@@ -34,6 +34,25 @@ exports.deleteship = (req, res, next) => {
         .catch(error => res.status(400).json({ error }));
 };
 
+exports.modifyShip = (req, res, next) => {
+    Starships.findOne({ where: { id: req.params.id } })
+        .then(ship => {
+
+            const thingObject = {
+                name: req.body.name,
+                image: req.body.image,
+                link: req.body.link,
+            } ;
+
+            ship.update({ ...thingObject }, { where: { discriminator: req.params.id } })
+                .then(() => res.status(200).json({ thingObject }))
+                .catch(error => res.status(400).json({ error }));
+
+        })
+        .catch(error => res.status(500).json({ error }));
+
+};
+
 
 
 
