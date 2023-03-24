@@ -1,5 +1,7 @@
 const dbModels = require('../db/sequelize');
 const Image = dbModels.image;
+const fs = require('fs');
+
 
 // ajouter une image
 exports.addImage = (req, res, next) => {
@@ -22,9 +24,21 @@ exports.addImage = (req, res, next) => {
 
 //supprimer une image
 exports.deleteImage = (req, res, next) => {
-    Image.destroy({ where: { id: req.params.id } })
-        .then(() => res.status(200).json({ message: 'image supprimé' }))
-        .catch(error => res.status(400).json({ error }));
+    const imageId = req.params.id;
+
+    Image.findOne({ where: { id: imageId } })
+        .then(image => {
+            if (!image) {
+                return res.status(404).json({ message: 'Image non trouvée' });
+            }
+            const filename = image.image.split('/images/')[1];
+            fs.unlink(`images/${filename}`, () => {
+                Image.destroy({ where: { id: imageId } })
+                    .then(() => res.status(200).json({ message: 'Image supprimée' }))
+                    .catch(error => res.status(400).json({ error }));
+            });
+        })
+        .catch(error => res.status(500).json({ error }));
 };
 
 //récupérer toute les images
