@@ -18,13 +18,12 @@ const AdminNavbar = () => {
                             <button className='navbar__button'> Retour</button>
                         </Link>
                     </div>
-
-                    <div className='adminNavbar__block__menu'>
-                        <Link to="/CreateEvent"><button className='adminNavbar__block__menu__button' >Crée un event</button></Link>
-                        <Link to="/Administration"><button className='adminNavbar__block__menu__button' ><FontAwesomeIcon icon={faAddressBook} /></button></Link>
-                        <Link to="/AdminWebsite"><button className='adminNavbar__block__menu__button' ><FontAwesomeIcon icon={faScrewdriverWrench} /></button></Link>
-                        <Link to="/AdminImagePage"><button className='adminNavbar__block__menu__button' >Image</button></Link>
-                    </div>
+                </div>
+                <div className='adminNavbar__menu'>
+                    <Link to="/Administration"><button className='adminNavbar__block__menu__button' >Admin</button></Link>
+                    <Link to="/AdminWebsite"><button className='adminNavbar__block__menu__button' >Ajouter Liens/Vaisseaux</button></Link>
+                    <Link to="/AdminImagePage"><button className='adminNavbar__block__menu__button' >Images</button></Link>
+                    <Link to="/CreateEvent"><button className='adminNavbar__block__menu__button' >Créer un event</button></Link>
                 </div>
             </div>
         </>

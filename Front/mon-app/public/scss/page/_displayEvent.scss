@@ -79,7 +79,7 @@
             align-items: center;
             justify-items: center;
 
-            h3 {
+            .params {
                 height: 60%;
                 width: 60%;
                 text-align: center;
@@ -89,7 +89,13 @@
             img {
                 height: 60%;
                 object-fit: contain;
-                border-bottom: 1px solid white;
+            }
+
+            h3{
+                border-top: 1px solid white;
+                margin: auto;
+                width: 80%;
+                font-size: 20px;
             }
 
         }
@@ -112,14 +118,14 @@
 
     }
 
-    .test {
+    .params {
         position: relative;
         /*les .picto-item deviennent référents*/
         cursor: help;
     }
 
-    .test:hover:after,
-    .test:focus:after {
+    .params:hover:after,
+    .params:focus:after {
         content: attr(aria-label);
         /* on affiche aria-label */
         position: absolute;

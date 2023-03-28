@@ -84,8 +84,8 @@ const WebsiteAdmin = () => {
         }
         e.target.style.color = "red"
         setShipId(e.target.id);
-        setShipTitle(e.target.getAttribute("dataTitle"));
-        setShipImage(e.target.getAttribute("dataImage"));
+        setShipTitle(e.target.getAttribute("datatitle"));
+        setShipImage(e.target.getAttribute("dataimage"));
         setShipUrl(e.target.getAttribute("dataurl"));
     }
 
@@ -332,7 +332,7 @@ const WebsiteAdmin = () => {
                         <h3>{shipArray.length} vaisseaux:</h3>
                         <div className='adminWebsite__card__block__displayLink__list'>
                             {shipArray.map(ship => (
-                                <span className='shipList' onClick={displayDeleteShipsButton} dataImage={ship.image} dataUrl={ship.link} dataTitle={ship.name} key={ship.id} id={ship.id}>
+                                <span className='shipList' onClick={displayDeleteShipsButton} dataimage={ship.image} dataurl={ship.link} datatitle={ship.name} key={ship.id} id={ship.id}>
                                     {ship.name}
                                 </span>
                             ))}

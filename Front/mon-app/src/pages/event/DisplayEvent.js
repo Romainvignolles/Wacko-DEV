@@ -55,9 +55,11 @@ const EventPage = (props) => {
     const description = () => {     // afficher le contenue de CKeditor
         document.getElementById("eventDescription").innerHTML = oneEvent.description;
     }
+
     const modifyEvent = () => {     // bouton vers la modification de l'event
         window.location = "/modifyEvent";
     }
+
     const ScreenShot = () => {      // boutton pour dll l'image de l'event
 
         document.getElementById("modifyButton").style.visibility = "hidden";
@@ -123,15 +125,42 @@ const EventPage = (props) => {
                 <div className="displayEvent__info__middle">
                     <div id="eventDescription"></div>
                     <div id="eventInfo">
-                        <h3 className="test" aria-label="gameplay" > <img src="./images/icon/icon1.png" alt="" />{oneEvent.environnement}</h3>
-                        <h3 className="test" aria-label="Nombre de joueurs" >Nombre de joueurs: {oneEvent.joueur}</h3>
-                        <h3>Serveur: {oneEvent.serveur}</h3>
-                        <h3 className="test" aria-label="Niveau minimum requis"><img src="./images/icon/icon4.png" alt="" /> {oneEvent.niveau}</h3>
-                        <h3>Crimestat autorisé: {oneEvent.crimeStat}</h3>
-                        <h3 className="test" aria-label="Restrictions de vaisseaux" ><img src="./images/icon/icon3.png" alt="" /> {oneEvent.forbidenShip}</h3>
-                        <h3 className="test" aria-label="Restrictions d'armes"><img src="./images/icon/icon5.png" alt="" /> {oneEvent.forbidenWeapon}</h3>
-                        <h3>Groupeur: {oneEvent.groupeur}</h3>
-                        <h3 className="test" aria-label="Stuff requis"><img src="./images/icon/icon2.png" alt="" /> {oneEvent.stuff}</h3>
+                        <div className="params" aria-label="Gameplay" >
+                            <img src="./images/icon/stuff.png" alt="" />
+                            <h3>{oneEvent.environnement}</h3>
+                        </div>
+                        <div className="params" aria-label="Nombre de joueurs" >
+                            <img src="./images/icon/stuff.png" alt="" />
+                            <h3>{oneEvent.joueur}</h3>
+                        </div>
+                        <div className="params" aria-label="Serveur">
+                            <img src="./images/icon/stuff.png" alt="" />
+                            <h3>{oneEvent.serveur}</h3>
+                        </div>
+                        <div className="params" aria-label="Niveau minimum requis">
+                            <img src="./images/icon/stuff.png" alt="" />
+                            <h3>{oneEvent.niveau}</h3>
+                        </div>
+                        <div className="params" aria-label="Crimestat autorisé?">
+                            <img src="./images/icon/stuff.png" alt="" />
+                            <h3>{oneEvent.crimeStat}</h3>
+                        </div>
+                        <div className="params" aria-label="Restrictions de vaisseaux" >
+                            <img src="./images/icon/stuff.png" alt="" />
+                            <h3>{oneEvent.forbidenShip}</h3>
+                        </div>
+                        <div className="params" aria-label="Restrictions d'armes">
+                            <img src="./images/icon/stuff.png" alt="" />
+                            <h3>{oneEvent.forbidenWeapon}</h3>
+                        </div>
+                        <div className="params" aria-label="Groupeur">
+                            <img src="./images/icon/stuff.png" alt="" />
+                            <h3>{oneEvent.groupeur}</h3>
+                        </div>
+                        <div className="params" aria-label="Stuff requis">
+                            <img src="./images/icon/stuff.png" alt="" />
+                            <h3>{oneEvent.stuff}</h3>
+                        </div>
                     </div>
                 </div>
             </div>
