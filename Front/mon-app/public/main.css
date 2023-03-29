@@ -401,10 +401,10 @@ body {
   align-items: center;
   height: 100%;
   justify-content: center;
-  width: 60%;
+  width: 50%;
 }
 .createEventPage .eventRight__middle .swiperElement {
-  width: 30%;
+  width: 40%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -418,9 +418,59 @@ body {
   -o-object-fit: cover;
      object-fit: cover;
 }
+.createEventPage .eventRight__middle .swiperElement .preview {
+  width: 100%;
+  height: 100%;
+}
+.createEventPage .eventRight__middle .swiperElement .preview__top {
+  position: absolute;
+  top: 0%;
+  background-color: black;
+  width: 100%;
+  text-align: center;
+  height: 10%;
+}
+.createEventPage .eventRight__middle .swiperElement .preview__text {
+  position: absolute;
+  left: 10%;
+  top: 20%;
+  height: 50%;
+  width: 20%;
+  background-color: black;
+  text-align: center;
+}
+.createEventPage .eventRight__middle .swiperElement .preview__title {
+  color: white;
+  margin: 0;
+}
+.createEventPage .eventRight__middle .swiperElement .preview__paragraphe {
+  color: white;
+  margin: 0;
+}
 .createEventPage .eventRight__middle .swiperElement h3 {
   margin: 5px;
   color: #E8B372;
+}
+.createEventPage .eventRight__middle .swiperElement .colorPicker {
+  margin: 5px;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  color: #E8B372;
+  background-color: rgba(40, 54, 56, 0.8);
+  border: 1px solid #E8B372;
+}
+.createEventPage .eventRight__middle .swiperElement .colorPicker__elem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.createEventPage .eventRight__middle .swiperElement .colorPicker__elem p {
+  margin: 5px;
+}
+.createEventPage .eventRight__middle .swiperElement .colorPicker input {
+  background-color: transparent;
+  margin-bottom: 5px;
 }
 .createEventPage .eventRight__middle .swiperElement .swiper-3d,
 .createEventPage .eventRight__middle .swiperElement .swiper-3d.swiper-css-mode .swiper-wrapper {

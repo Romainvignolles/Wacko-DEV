@@ -61,106 +61,168 @@
                 align-items: center;
                 height: 100%;
                 justify-content: center;
-                width: 60%;
+                width: 50%;
             }
 
             .swiperElement {
-                width: 30%;
+                width: 40%;
                 height: 100%;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                img{
+
+                img {
                     display: block;
                     width: 100%;
                     height: 100%;
                     object-fit: cover;
                 }
+
+                .preview {
+                    width: 100%;
+                    height: 100%;
+
+                    &__top {
+                        position: absolute;
+                        top: 0%;
+                        background-color: black;
+                        width: 100%;
+                        text-align: center;
+                        height: 10%;
+                    }
+
+                    &__text {
+                        position: absolute;
+                        left: 10%;
+                        top: 20%;
+                        height: 50%;
+                        width: 20%;
+                        background-color: black;
+                        text-align: center;
+                    }
+
+                    &__title {
+                        color: white;
+                        margin: 0;
+                    }
+
+                    &__paragraphe {
+                        color: white;
+                        margin: 0;
+                    }
+                }
+
                 h3 {
                     margin: 5px;
                     color: #E8B372;
                 }
-            
 
-            .swiper-3d,
-            .swiper-3d.swiper-css-mode .swiper-wrapper {
-                width: 100%;
-                border: 1px solid #E8B372;
+                .colorPicker {
+                    margin: 5px;
+                    display: flex;
+                    width: 100%;
+                    justify-content: space-around;
+                    color: #E8B372;
+                    background-color: rgb(40, 54, 56, 0.8);
+                    border: 1px solid #E8B372;
+
+                    &__elem {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+
+                        p{
+                            margin: 5px;
+                        }
+                    }
+
+                    input {
+                        background-color: transparent;
+                        margin-bottom: 5px;
+
+                    }
+                }
+
+
+                .swiper-3d,
+                .swiper-3d.swiper-css-mode .swiper-wrapper {
+                    width: 100%;
+                    border: 1px solid #E8B372;
+                }
+
+                .swiper-pagination-bullet {
+                    background: white;
+                    opacity: 1 !important;
+                }
+
+                .swiper-pagination-bullet-active {
+                    opacity: 1 !important;
+                    background: #E8B372 !important;
+                }
             }
 
-            .swiper-pagination-bullet {
-                background: white;
-                opacity: 1 !important;
-            }
 
-            .swiper-pagination-bullet-active {
-                opacity: 1 !important;
-                background: #E8B372 !important;
+
+        }
+
+        &__bot {
+            width: 100%;
+            height: 10%;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+
+            p {
+                width: 20%;
+                color: #E8B372;
+                text-align: center;
+
             }
         }
 
-
-
     }
 
-    &__bot {
-        width: 100%;
-        height: 10%;
+    .eventLeft {
+        width: 20%;
         display: flex;
+        flex-direction: column;
         align-items: center;
+        height: 100vh;
+        background-color: rgb(40, 54, 56, 0.8);
         justify-content: space-around;
 
-        p{
-            width: 20%;
+        fieldset {
+            width: 80%;
             color: #E8B372;
-            text-align: center;
-
-        }
-    }
-
-}
-
-.eventLeft {
-    width: 20%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 100vh;
-    background-color: rgb(40, 54, 56, 0.8);
-    justify-content: space-around;
-
-    fieldset {
-        width: 80%;
-        color: #E8B372;
-        border-left: 0px;
-        border-right: 0px;
-        border-bottom: 0px;
-        font-family: 'Rajdhani', sans-serif;
-        font-size: 15px;
-
-        input {
-            background-color: transparent;
-            border: none;
-            border-bottom: 2px #E8B372 solid;
+            border-left: 0px;
+            border-right: 0px;
+            border-bottom: 0px;
             font-family: 'Rajdhani', sans-serif;
-            color: #E8B372;
-            font-size: 17px;
+            font-size: 15px;
 
-            ::-webkit-input-placeholder {
+            input {
+                background-color: transparent;
+                border: none;
+                border-bottom: 2px #E8B372 solid;
+                font-family: 'Rajdhani', sans-serif;
                 color: #E8B372;
                 font-size: 17px;
-                font-family: 'Rajdhani', sans-serif;
-            }
 
-            &::placeholder {
-                color: #E8B372;
-                font-size: 17px;
-                font-family: 'Rajdhani', sans-serif;
+                ::-webkit-input-placeholder {
+                    color: #E8B372;
+                    font-size: 17px;
+                    font-family: 'Rajdhani', sans-serif;
+                }
+
+                &::placeholder {
+                    color: #E8B372;
+                    font-size: 17px;
+                    font-family: 'Rajdhani', sans-serif;
+                }
             }
         }
     }
-}
 }
 
 
@@ -192,6 +254,7 @@
     justify-content: center;
     font-size: 17px;
 }
+
 #delete {
     width: 20%;
     height: 45%;

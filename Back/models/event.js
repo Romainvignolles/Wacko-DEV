@@ -61,6 +61,22 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: false,
         },
+        topColor: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        titleColor: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        textColor: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
+        paraColor: {
+            type: Sequelize.STRING,
+            allowNull: false,
+        },
     });
 
     return event;

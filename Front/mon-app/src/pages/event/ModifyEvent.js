@@ -13,7 +13,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css'; 
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 
 
@@ -50,6 +50,11 @@ const CreateEventPage = (props) => {
     const [forbidenWeapon, setForbidenWeapon] = useState("");
     const [stuff, setStuff] = useState("");
 
+    const [topColor, setTopColor] = useState("");
+    const [titleColor, setTitleColor] = useState("");
+    const [textColor, setTextColor] = useState("");
+    const [paraColor, setParaColor] = useState("");
+
 
 
 
@@ -65,7 +70,7 @@ const CreateEventPage = (props) => {
     const back = (e) => {                        // boutton retour
         window.location = "/Event";
     }
-    const deleteEvent = (e) => {                  // supprimer l'event
+    const deleteEvent = (e) => {    // supprimer l'event
         confirmAlert({
             title: 'Confirmer la suppression',
             message: 'Êtes-vous sûr de vouloir supprimer cet évènement ?',
@@ -92,11 +97,11 @@ const CreateEventPage = (props) => {
                 }
             ]
         });
-       
+
 
     }
 
-    const modifyEvent = (e) => {   //création de l'event
+    const modifyEvent = (e) => {   //modification de l'event
         e.preventDefault()
         const titre = document.getElementById('titre').value;
         const date = document.getElementById('date').value;
@@ -149,6 +154,15 @@ const CreateEventPage = (props) => {
         let image = document.getElementsByClassName("swiper-slide swiper-slide-visible swiper-slide-active")[0].firstChild
         image = image.src
 
+        const topColor = document.querySelector(".colorImput1").value;
+        const titleColor = document.querySelector(".colorImput2").value;
+        const textColor = document.querySelector(".colorImput3").value;
+        const paraColor = document.querySelector(".colorImput4").value;
+
+        console.log(topColor);
+        console.log(titleColor);
+        console.log(textColor);
+        console.log(paraColor);
 
         if (titre === "" || date === "" || lieu === "" || environnement === "" || formData === "" || joueur === "" || selectedServer === "" || minLVL === "" || crimeStat === "" || forbidenShip === "" || forbidenWeapon === "" || groupeur === "" || stuff === "" || eventType === "") {
             let display = document.getElementById("eventErrorMessage")
@@ -177,6 +191,10 @@ const CreateEventPage = (props) => {
                     stuff,
                     eventType,
                     image,
+                    topColor,
+                    titleColor,
+                    textColor,
+                    paraColor,
                 }
             })
                 .then((res) => {
@@ -238,6 +256,28 @@ const CreateEventPage = (props) => {
                 setForbidenWeapon(res.data.forbidenWeapon);
                 setStuff(res.data.stuff);
 
+                setTopColor(res.data.topColor);
+                setTitleColor(res.data.titleColor);
+                setTextColor(res.data.textColor);
+                setParaColor(res.data.paraColor);
+
+                let top = document.querySelectorAll(".preview__top");
+                for (const elem of top) {
+                    elem.style.backgroundColor = topColor
+                }
+                let title = document.querySelectorAll(".preview__title");
+                for (const elem of title) {
+                    elem.style.color = titleColor
+                }
+                let text = document.querySelectorAll(".preview__text");
+                for (const elem of text) {
+                    elem.style.backgroundColor = textColor
+                }
+                let para = document.querySelectorAll(".preview__paragraphe");
+                for (const elem of para) {
+                    elem.style.color = paraColor
+                }
+
                 document.getElementById(gameplay).checked = true
                 document.getElementById(serveur).checked = true
                 document.getElementById(niveau).checked = true
@@ -284,15 +324,54 @@ const CreateEventPage = (props) => {
 
         })
             .then((res) => {
-                console.log(res);
                 setAllImage(res.data)
             })
             .catch((err) => {
-                console.log(err);
             })
     }
 
+    const modifTopColor = (e) => {    // preview couleur
+        let top = document.querySelectorAll(".preview__top");
+        setTopColor(e.target.value)
 
+        for (const elem of top) {
+            let color = e.target.value
+            elem.style.backgroundColor = color
+        }
+    }
+
+    const modifTitleColor = (e) => {  // preview couleur
+        let title = document.querySelectorAll(".preview__title");
+        setTitleColor(e.target.value)
+
+
+        for (const elem of title) {
+            let color = e.target.value
+            elem.style.color = color
+        }
+    }
+
+    const modifTextColor = (e) => {   // preview couleur
+        let text = document.querySelectorAll(".preview__text");
+        setTextColor(e.target.value)
+
+
+        for (const elem of text) {
+            let color = e.target.value
+            elem.style.backgroundColor = color
+        }
+    }
+
+    const modifparaColor = (e) => {   // preview couleur
+        let para = document.querySelectorAll(".preview__paragraphe");
+        setParaColor(e.target.value)
+
+
+        for (const elem of para) {
+            let color = e.target.value
+            elem.style.color = color
+        }
+    }
 
     useEffect(() => {
         displayEvent()
@@ -356,14 +435,48 @@ const CreateEventPage = (props) => {
                         >
                             <SwiperSlide>
                                 <img src={image} alt="" />
+                                <div className='preview'>
+                                    <div className='preview__top'>
+                                        <p className='preview__title'>Titre</p>
+                                    </div>
+                                    <div className='preview__text'>
+                                        <p className='preview__paragraphe'>Texte</p>
+                                    </div>
+                                </div>
                             </SwiperSlide>
                             {allImage.map(image => (
-                                    <SwiperSlide key={image.id} id={image.id} >
-                                        <img src={image.image} alt="" />
-                                    </SwiperSlide>
-                                ))}
+                                <SwiperSlide key={image.id} id={image.id} >
+                                    <img src={image.image} alt="" />
+                                    <div className='preview'>
+                                        <div className='preview__top'>
+                                            <p className='preview__title'>Titre</p>
+                                        </div>
+                                        <div className='preview__text'>
+                                            <p className='preview__paragraphe'>Texte</p>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                            ))}
 
                         </Swiper>
+                        <div className='colorPicker'>
+                            <div className='colorPicker__elem'>
+                                <p>Background titre:</p>
+                                <input className='colorImput1' type="color" onChange={modifTopColor} value={topColor} />
+                            </div>
+                            <div className='colorPicker__elem'>
+                                <p>Titre:</p>
+                                <input className='colorImput2' type="color" onChange={modifTitleColor} value={titleColor} />
+                            </div>
+                            <div className='colorPicker__elem'>
+                                <p>Background texte:</p>
+                                <input className='colorImput3' type="color" onChange={modifTextColor} value={textColor} />
+                            </div>
+                            <div className='colorPicker__elem'>
+                                <p>Texte:</p>
+                                <input className='colorImput4' type="color" onChange={modifparaColor} value={paraColor} />
+                            </div>
+                        </div>
                     </div>
 
                 </div>

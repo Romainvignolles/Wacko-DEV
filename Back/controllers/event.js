@@ -22,6 +22,10 @@ exports.addEvent = (req, res, next) => {
             stuff: req.body.stuff,
             eventType: req.body.eventType,
             image: req.body.image,
+            topColor: req.body.topColor,
+            titleColor: req.body.titleColor,
+            textColor: req.body.textColor,
+            paraColor: req.body.paraColor,
         });
         event.save()
             .then(() => res.status(201).json({ message: 'nouvel event ajouter!' }))
@@ -69,6 +73,10 @@ exports.modifyEvent = (req, res, next) => {
                                 stuff: req.body.stuff,
                                 eventType: req.body.eventType,
                                 image: req.body.image,
+                                topColor: req.body.topColor,
+                                titleColor: req.body.titleColor,
+                                textColor: req.body.textColor,
+                                paraColor: req.body.paraColor,
                             } : { ...req.body };
 
                         Event.update({ ...thingObject }, { where: { id: req.params.id } })
