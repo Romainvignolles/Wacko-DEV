@@ -96,7 +96,7 @@ const CreateEventPage = (props) => {
         const titleColor = document.querySelector(".colorImput2").value;
         const textColor = document.querySelector(".colorImput3").value;
         const paraColor = document.querySelector(".colorImput4").value;
-
+        
         // console.log(titre);
         // console.log(date);
         // console.log(lieu);

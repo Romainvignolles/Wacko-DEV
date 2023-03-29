@@ -12,15 +12,16 @@
         align-items: center;
         justify-content: center;
 
-        .adminButton{
+        .adminButton {
             position: absolute;
             left: 3%;
             display: flex;
             width: 20%;
             justify-content: space-evenly;
         }
-        Button{
-            
+
+        Button {
+
             width: 40%;
             height: 3%;
             border-radius: 10px;
@@ -32,12 +33,12 @@
             margin: 0 10%;
         }
 
-        svg{
-            height: 60px; 
+        svg {
+            height: 60px;
         }
+
         #roleSvg {
             height: 60px;
-            fill: white;
             position: absolute;
             right: 2%;
         }
@@ -49,6 +50,9 @@
         color: white;
         width: 100%;
         height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
 
 
@@ -71,31 +75,36 @@
         }
 
         #eventInfo {
-            width: 70%;
-            height: 100%;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, 30%);
+            width: 100%;
+            height: 20%;
+            display: flex;
             justify-content: space-between;
             align-items: center;
-            justify-items: center;
+            background-color: rgb(26, 42, 51, 0.8);
+
 
             .params {
-                height: 60%;
-                width: 60%;
+                height: 65%;
+                width: 100%;
                 text-align: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
 
             }
 
             img {
-                height: 60%;
+                height: 80%;
                 object-fit: contain;
             }
 
-            h3{
+            h3 {
                 border-top: 1px solid white;
-                margin: auto;
+                margin: 5px 0px 0px 0px;
                 width: 80%;
                 font-size: 20px;
+                height: 20%;
             }
 
         }
