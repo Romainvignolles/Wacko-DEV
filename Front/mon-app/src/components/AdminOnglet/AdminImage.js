@@ -34,6 +34,7 @@ const AdminImage = (props) => {
                 setLoad(res)
             })
             .catch((err) => {
+                console.log(err);
             })
 
     }

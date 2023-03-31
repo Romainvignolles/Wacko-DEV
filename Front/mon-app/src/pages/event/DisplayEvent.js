@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from 'axios';
 
 
@@ -172,7 +172,7 @@ const EventPage = (props) => {
                         <h3>{oneEvent.forbidenShip}</h3>
                     </div>
                     <div className="params" aria-label="Restrictions d'armes">
-                        <img src="./images/icon/stuff.png" alt="" />
+                        <img src="./images/icon/armes.png" alt="" />
                         <h3>{oneEvent.forbidenWeapon}</h3>
                     </div>
                     <div className="params" aria-label="Groupeur">

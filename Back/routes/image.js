@@ -10,10 +10,10 @@ const imageCtrl = require('../controllers/image.js');
 router.post('/addImage',multer, imageCtrl.addImage)
 
 //recupère les images
-router.get('/getImage', imageCtrl.getAllImage)
+router.get('/getImage',imageCtrl.getAllImage)
 
 //supprime une image
-router.delete('/deleteImage/:id', imageCtrl.deleteImage);
+router.delete('/deleteImage/:id',multer,imageCtrl.deleteImage);
 
 
 

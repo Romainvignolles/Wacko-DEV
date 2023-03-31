@@ -58,7 +58,7 @@ const Membre = () => {
 
 
     //compteur de role
-    let presidentFilter = staticStat.filter(e => e.role === 'Président du conseil');
+    let presidentFilter = staticStat.filter(e => e.role === 'Président');
     let conseilFilter = staticStat.filter(e => e.role === 'Conseiller');
     let membreFilter = staticStat.filter(e => e.role === 'Membre');
     let recrueFilter = staticStat.filter(e => e.role === 'Recrue');
@@ -145,9 +145,9 @@ const Membre = () => {
                 resetsearch()
                 axios.get(`${process.env.REACT_APP_API_URL}api/auth/user`).then(res => {
                     let member = res.data;
-                    const recrueFilter = member.filter(element => element.role === "Recrue");
+                    const recrueFilter = member.filter(element => element.role === "Recrue" || element.role === "Réserviste");
                     setAllMember(recrueFilter)
-                    document.getElementById("listTitle").innerHTML = "Recrues :";
+                    document.getElementById("listTitle").innerHTML = "Réservistes :";
                 });
                 break;
             case "membre":
@@ -235,7 +235,7 @@ const Membre = () => {
                 </span>
 
                 <span onClick={memberFilter} id='recrue' className='membre__top__count'>
-                    Recrues[{recrueCount}]
+                    Réservistes[{recrueCount}]
                 </span>
             </div>
 

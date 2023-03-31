@@ -204,8 +204,8 @@ const LoginForm = (props) => {
     }, [useEffectLoad]);
 
     const discord = (e) => {
-        window.location.href = "https://discord.com/api/oauth2/authorize?client_id=1066757727419908126&redirect_uri=http%3A%2F%2Flocalhost%3A3001&response_type=token&scope=guilds%20guilds.members.read"
-        // window.location.href = "https://discord.com/api/oauth2/authorize?client_id=1013836060092018770&redirect_uri=https%3A%2F%2Fwacko.romain-vignolles.fr&response_type=token&scope=guilds%20guilds.members.read"
+        // window.location.href = "https://discord.com/api/oauth2/authorize?client_id=1066757727419908126&redirect_uri=http%3A%2F%2Flocalhost%3A3001&response_type=token&scope=guilds%20guilds.members.read"
+        window.location.href = "https://discord.com/api/oauth2/authorize?client_id=1013836060092018770&redirect_uri=https%3A%2F%2Fwacko.romain-vignolles.fr&response_type=token&scope=guilds%20guilds.members.read"
     }
 
     const social = (e) => {
